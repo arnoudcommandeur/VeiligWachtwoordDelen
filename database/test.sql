@@ -1,0 +1,15 @@
+DROP TABLE TEST
+GO
+
+SELECT *
+	, CAST(ENCRYPTBYASYMKEY(ASYMKEY_ID('Gebruiker2'), MedewerkerNaam) AS VARBINARY(MAX)) Cipher
+INTO TEST
+FROM
+	Beaufort..Beaufort_Medewerker
+GO
+
+SELECT *
+	, CONVERT(VARCHAR(100), DECRYPTBYASYMKEY(ASYMKEY_ID('Gebruiker2'), Cipher)) AS Plaintext
+FROM
+	TEST
+
