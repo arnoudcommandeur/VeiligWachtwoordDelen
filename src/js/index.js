@@ -4,23 +4,23 @@ App = {
   account: null,
   logresult: null,
 
-  init: async function() {
+  init: function() {
     //alert('App.init');
-    const btn = document.querySelector('#reward');
-    const btnNewTokens = document.querySelector('#NewTokens');
+    const btnStart = document.querySelector('#start');
+    const btnStep1 = document.querySelector('#step1');
+    const btnStep2 = document.querySelector('#step2');
 
-    let address = window.location.search;
-    address = address.substring(address.length-40);
-    document.getElementById("MyAddress").innerHTML = '0x' + address;
-
-    btn.addEventListener('click', async function(event){
-      await App.rewardVisitor();
+    btnStart.addEventListener('click', async function(event){
+      App.Start();
     });
-    btnNewTokens.addEventListener('click', async function(event){
-      await App.buyTokens();
+    btnStep1.addEventListener('click', async function(event){
+      App.Start();
+    });
+    btnStep2.addEventListener('click', async function(event){
+      App.Start();
     });
 
-    return App.initWeb3();
+    return true;
   },
 
   initWeb3: async function() {
@@ -172,7 +172,7 @@ App = {
 };
 
 $(function() {
-  $(window).load(async function() {
+  $(window).load(function() {
     App.init();
   });
 });

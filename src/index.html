@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Escape Room Collectibles</title>
+    <title>Veilig Wachtwoord Delen</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -19,56 +19,92 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body style="background: #000;">
-    <div id="myMenu" class="menu black">
+  <body>
+    <div id="myMenu" class="menu blue-900">
       <button
-        class="black full text-red-900"
+        class="black full text-white"
         onclick="window.location.href='index.html'"
       >
         START
       </button>
-      <button
-        class="black full text-red-900"
+      <!-- <button
+        class="black full text-white"
         onclick="window.location.href='showcollectibles.html'"
       >
         My Collectibles
       </button>
       <button
-        class="black full text-red-900"
+        class="black full text-white"
         onclick="window.location.href='showqrcode.html'"
       >
         Collect
-      </button>
+      </button> -->
     </div>
-    <div class="header red-900 content">
+    <div class="header blue-900 content">
       <button
         class="left icon ion-navicon"
         name="button"
         onclick="openMenu('myMenu')"
       ></button>
-      <h1>Escape Room Collectibles</h1>
+      <h1>Veilig Wachtwoord Delen</h1>
     </div>
 
 
-		<div class="content has-header" style="font-size: 16pt; color: white;" align="center">
+		<div class="content has-header" style="font-size: 14pt;" align="center">
+      <br>
 			<div align="center">
-				<img src="images/logo.jpg" height="300">
+				<img src="images/logo.PNG" height="300">
 			</div>
-			<div style="padding: 20pt">
-				<h1 class="text-strong text-big" style="color: red">Welcome</h1>
+			<div style="padding: 20pt" >
+				<h1 class="text-strong text-big">Welkom</h1>
 				<p>
-          This site is part of the final project of the ConsenSys Bootcamp 2020!
+          Deze site maakt het mogelijk om op een veilige manier wachtwoorden uit te wisselen. 
+          Het uitwisselen bestaat uit de volgende stappen:
+          <br><br>
+          1. Klik op de knop "Start uitwisseling" en vul de gegevens in.
+          <br>
+          2. Klik op Kopieer details en verstuur het bericht via email
+          <br>
+          3. Wacht op reactie van andere gebruiker en vul de ontvangen gegevens in
+           <br>
+          4. Vul het wachtwoord nu in, klik op "Kopieer details" en verstuur deze per email
 				</p>
-				<br>
-				<h1 class="text-small text-big" style="color: red">Collect and show your achievements</h1>
-				<p>
-          On this site you can collect and show all the Escape Rooms you finished within time. 
-          Show your friends which rooms you already passed.
-				</p>	
-        <p>
-          Use the menu to view your collectables or to collect a new reward.
-        </p>
+        <br>
+        Hierna kan de gebruiker het door jou verstuurde wachtwoord veilig ontcijferen en gebruiken.
+        <br><br>
+        <button id="start" class="blue-900">Start uitwisseling</button>
 			</div>
+
+      <br><br><br><br>
+
+      Vul hieronder de details in en klik op de knop "Kopieer details"
+      <div class="list">
+        <div class="item">
+          <input type="text" placeholder="Afzender">
+        </div>
+        <div class="item">
+          <input type="text" placeholder="Korte omschrijving wachtwoord (zonder technische details)">
+        </div>
+        <div class="item">
+          <button id="step1" class="blue-900 radius full">Kopieer details</button>
+        </div>
+      </div>
+
+      <br><br><br>
+
+      Vul hieronder de per email ontvangen gegevens in en vul jouw wachtwoord in. Klik hierna op de knop "Kopieer details"
+      <div class="list">
+        <div class="item">
+          <input type="text" placeholder="Cipher bericht uit email">
+        </div>
+        <div class="item">
+          <input type="text" placeholder="Wachtwoord">
+        </div>
+        <div class="item">
+          <button id="step2" class="blue-900 radius full">Kopieer details</button>
+        </div>
+      </div>
+
     </div>
 
 
@@ -76,5 +112,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="mobileui/mobileui.js"></script>
+    <script type="text/javascript" src="js/library/web3.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
