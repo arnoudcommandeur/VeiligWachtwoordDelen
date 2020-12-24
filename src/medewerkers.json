@@ -1,0 +1,17 @@
+{ "medewerkers": [
+  {
+	"key": "AC",
+	"voornaam": "Arnoud",	
+	"volledigeNaam":"Arnoud Commandeur",
+	"emailAdres":"a.commandeur@infent.nl",
+	"publicKey":"1234567890"
+  },
+  {
+	"key": "BdG",
+	"voornaam": "Bart",	
+	"volledigeNaam":"Bart de Brote",
+	"emailAdres":"b.degrote@infent.nl",
+	"publicKey":"54662727265"
+  }
+ ]
+}

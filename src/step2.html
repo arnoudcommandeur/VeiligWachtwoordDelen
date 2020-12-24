@@ -59,43 +59,12 @@
 				<h1 class="text-strong text-big">Welkom</h1>
 				<p>
           Deze site maakt het mogelijk om op een veilige manier wachtwoorden uit te wisselen. 
-          Het uitwisselen bestaat uit de volgende stappen:
-          <br><br>
-          1. Kies de ontvanger uit de lijst
-          <br>
-          2. Vul de omschrijving in waarvoor het wachtwoord dient in (beperkt de details)
-          <br>
-          2. Vul het wachtwoord in
-          <br>
-          3. Klik op de knop 'Creeer email' om een voorstel email te maken
-          <br>
-          4. Pas de email aan (optioneel)
-          <br>
-          5. Verstuur de email
 				</p>
-        <br>
 			</div>
 
-      <div id="medewerkers"></div>
-
-      <div class="list">
-        <div class="item">
-          <input id="geadresserdeNaam" type="text" placeholder="Voornaam van de geadresseerde">
-        </div>
-        <div class="item">
-          <input id="geadresserdeEmail" type="text" placeholder="Email sturen naar">
-        </div>
-        <div class="item">
-          <input id="omschrijving" type="text" placeholder="Korte omschrijving wachtwoord (zonder technische details)">
-        </div>
-        <div class="item">
-          <input id="wachtwoord" type="text" placeholder="Wachtwoord">
-        </div>
-        <div class="item">
-          <button id="step1" class="blue-900 radius full">Creeer email</button>
-        </div>
-      </div>
-
+      U bevindt zich momenteel in stap 2. In deze stap wordt uw publieke sleutel teruggestuurd naar de aanvrager. Klik op onderstaande knop en verstuur de email die geopend wordt zonder aanpassingen door te voeren.
+      <br><br>
+      <button id="step2" class="blue-900 radius full">Stuur publieke sleutel per email</button>
 
     </div>
 
@@ -108,8 +77,7 @@
     <script type="text/javascript" src="js/library/nacl.min.js"></script>
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
-    <script type="text/javascript" src="js/indexeddb.js"></script>
 
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/step2.js"></script>
   </body>
 </html>
