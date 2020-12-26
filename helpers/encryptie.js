@@ -24,3 +24,6 @@ false,
 }
 )
 
+
+nacl.util.decodeBase64(decodeURIComponent(urlParams.get('publicKeySender')));  
+
