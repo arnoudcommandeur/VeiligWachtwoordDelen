@@ -59,19 +59,7 @@
 				<h1 class="text-strong text-big">Welkom</h1>
 				<p>
           Deze site maakt het mogelijk om op een veilige manier wachtwoorden uit te wisselen. 
-          Het uitwisselen bestaat uit de volgende stappen:
-          <br><br>
-          1. Kies de ontvanger uit de lijst
-          <br>
-          2. Vul de omschrijving in waarvoor het wachtwoord dient in (beperkt de details)
-          <br>
-          2. Vul het wachtwoord in
-          <br>
-          3. Klik op de knop 'Creeer email' om een voorstel email te maken
-          <br>
-          4. Pas de email aan (optioneel)
-          <br>
-          5. Verstuur de email
+          Vul hieronder jouw gegevens in en klik op Creeer link om een verzoek tot wachtwoord te sturen.
 				</p>
         <br>
 			</div>
@@ -80,22 +68,19 @@
 
       <div class="list">
         <div class="item">
-          <input id="geadresserdeNaam" type="text" placeholder="Voornaam van de geadresseerde">
+          <input id="volledigeNaam" type="text" placeholder="Je eigen naam">
         </div>
         <div class="item">
-          <input id="geadresserdeEmail" type="text" placeholder="Email sturen naar">
-        </div>
-        <div class="item">
-          <input id="omschrijving" type="text" placeholder="Korte omschrijving wachtwoord (zonder technische details)">
+          <input id="emailAdres" type="text" placeholder="Je email adres">
         </div>
         <div class="item">
           <input id="wachtwoord" type="text" placeholder="Wachtwoord">
         </div>
         <div class="item">
-          <button id="step1" class="blue-900 radius full">Creeer email</button>
+          <button id="btncreateEmail" class="blue-900 radius full">Creeer link</button>
         </div>
       </div>
-
+      <div id='link'></div>
 
     </div>
 

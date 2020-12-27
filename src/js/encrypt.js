@@ -6,9 +6,6 @@ App = {
     //alert('App.init');
     App.keySender = nacl.box.keyPair();
 
-  // Test keys!!!
-  App.keySender = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64("6uQevP9mtRUUz34MQb0bLgb7JEDMGyYVauhsy+zDGQ0="))
-
     //console.log(App.keySender.publicKey);
     const btncreateEmail = document.querySelector('#createEmail');
 
@@ -35,7 +32,7 @@ App = {
     omschrijving = document.getElementById("omschrijving").value
     message = document.getElementById("wachtwoord").value
 
-    cipher = nacl.box(nacl.util.decodeUTF8(message), nonce, nacl.util.decodeUTF8(publicKeyReciever), App.keySender.secretKey);
+    cipher = nacl.box(nacl.util.decodeUTF8(message), nonce, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
     //console.log(cipher);
 
     var mail = "mailto:" + emailAdres
@@ -44,9 +41,8 @@ App = {
     body = "Hallo " + volledigeNaam + ", \n\n"
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + omschrijving + ". \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
-    body += "http://localhost:3000/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+    body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
-    // "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(App.keySender.publicKey)) + 
 
     mail += "&body=" + encodeURIComponent(body); 
 

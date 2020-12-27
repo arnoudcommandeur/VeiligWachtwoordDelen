@@ -1,25 +1,12 @@
 App = {
 
-  keySender: null,
+  myKey: null,
 
   init: function() {
     //alert('App.init');
-    App.keySender = nacl.box.keyPair();
-    console.log(App.keySender.publicKey);
-
-
-    const btnStart = document.querySelector('#start');
-    const btnStep1 = document.querySelector('#step1');
-    const btnStep2 = document.querySelector('#step2');
-
-    btnStart.addEventListener('click', async function(event){
-      App.Start();
-    });
-    btnStep1.addEventListener('click', async function(event){
+    const btncreateEmail = document.querySelector('#btncreateEmail');
+    btncreateEmail.addEventListener('click', async function(event){
       App.initEncrypt();
-    });
-    btnStep2.addEventListener('click', async function(event){
-      App.Start();
     });
 
     return true;
@@ -27,32 +14,45 @@ App = {
 
   initEncrypt: function() {
 
-    nonce = nacl.util.encodeBase64(nacl.randomBytes(nacl.box.nonceLength));
-    ontvanger = document.getElementById("ontvanger").value;  
-    afzender = document.getElementById("afzender").value;  
-    email = document.getElementById("geadresserde").value;  
-    omschrijving = document.getElementById("omschrijving").value
+    App.initKey();
 
-    //cipher = nacl.box(nacl.util.decodeUTF8(message), nonce, keySender.publicKey, keySender.secretKey);
+    volledigeNaam = document.getElementById("volledigeNaam").value;  
+    emailAdres = document.getElementById("emailAdres").value;  
+    wachtwoord = document.getElementById("wachtwoord").value
 
-    var mail = "mailto:" + email
-    mail += "?subject=Public key retourbericht voor wachtwoord uitwisseling"
+    var mail = "mailto:"
+    mail += "?subject=Verzoek voor wachtwoord uitwisseling"
 
-    body = "Hallo " + ontvanger + ", \n\n"
-    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + omschrijving + ". \n\n"
-    body += "Klik op de link om het proces op te starten: "
-    body += "http://localhost:3000/step2.html?nonce=" + encodeURIComponent(nonce) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(App.keySender.publicKey)) + "&afzender=" + encodeURIComponent(afzender) + "&omschrijving=" + encodeURIComponent(omschrijving);
+    body = "Hallo\n\n"
+    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord.\n\n"
+    body += "Klik op de link hieronder om het wachtwoord veilig te delen: "
+    body += "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(nacl.util.encodeBase64(App.myKey.publicKey));
 
     mail += "&body=" + encodeURIComponent(body); 
-
-    console.log("Public Key=" + nacl.util.encodeBase64(App.keySender.publicKey));
-    console.log("Nonce=" + nonce);
     var mlink = document.createElement('a');
     mlink.setAttribute('href', mail);
     mlink.click();
 
     //alert(cipher);
     return true;
+  },
+
+  initKey: function() {
+
+    App.myKey = nacl.box.keyPair();
+
+    let openRequest = indexedDB.open("infent")
+    openRequest.onupgradeneeded = () => {
+      console.log("DB update needed")
+      openRequest.result.createObjectStore("keys")
+    }
+    openRequest.onsuccess = () => {
+      console.log("DB opened")
+      let store = openRequest.result.transaction("keys", "readwrite").objectStore("keys")
+
+      // store.put({id: 'AC', data: {name: {first: "John", last: "Doe"}, age: 42}}); -- Maybe better than store.add?
+      store.put({secretkey: nacl.util.encodeBase64(App.myKey.secretKey)}, '0')
+    }
   }
   // end App
 };
