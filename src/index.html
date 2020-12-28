@@ -58,8 +58,8 @@
 			<div style="padding: 20pt" >
 				<h1 class="text-strong text-big">Welkom</h1>
 				<p>
-          Deze site maakt het mogelijk om op een veilige manier wachtwoorden uit te wisselen. 
-          Vul hieronder jouw gegevens in en klik op Creeer link om een verzoek tot wachtwoord te sturen.
+          Stuur via deze site veilig jouw wachtwoord. 
+          Vul hieronder jouw eigen gegevens in en klik op Creeer link om een verzoek tot wachtwoord delen te versturen.
 				</p>
         <br>
 			</div>
@@ -72,9 +72,6 @@
         </div>
         <div class="item">
           <input id="emailAdres" type="text" placeholder="Je email adres">
-        </div>
-        <div class="item">
-          <input id="wachtwoord" type="text" placeholder="Wachtwoord">
         </div>
         <div class="item">
           <button id="btncreateEmail" class="blue-900 radius full">Creeer link</button>
@@ -93,6 +90,7 @@
     <script type="text/javascript" src="js/library/nacl.min.js"></script>
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
 
     <script type="text/javascript" src="js/index.js"></script>

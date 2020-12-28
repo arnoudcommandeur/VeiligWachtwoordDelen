@@ -60,7 +60,15 @@ App = {
           let cursor = e.target.result
           if (cursor) {
 
-            App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(cursor.value["secretkey"]))
+            cipher = cursor.value["secretkey"];
+            console.log(cipher);
+            myWachtwoord = window.prompt("Geef wachtwoord om key te openen","");
+            plainBytes = CryptoJS.AES.decrypt(cipher, myWachtwoord)
+            plain = plainBytes.toString(CryptoJS.enc.Utf8);
+            console.log(plain);
+
+//            App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(cursor.value["secretkey"])) // Vervangen door nieuwe versie
+            App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(plain))
             //console.log(nacl.util.decodeBase64(cursor.value["secretkey"]))
             console.log(App.myKey.secretKey)
 
