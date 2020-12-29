@@ -1,6 +1,7 @@
 App = {
 
   myKey: null,
+  publicKey: null,
 
   init: function() {
     //alert('App.init');
@@ -12,20 +13,11 @@ App = {
 
     App.initKey();
 
-    // console.log(App.myKey);
-    // if (App.myKey === null)
-    // {
-    //   console.log('createNewKey starten');
-    //   App.createNewKey()
-    // }
-
-
     return true;
   },
 
   encrypt: function() {
 
-    //App.initKey();
 
     volledigeNaam = document.getElementById("volledigeNaam").value;  
     emailAdres = document.getElementById("emailAdres").value;  
@@ -37,7 +29,7 @@ App = {
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord.\n\n"
     body += "Klik op de link hieronder om het wachtwoord veilig te delen: "
 //    body += "http://localhost:3000/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(nacl.util.encodeBase64(App.myKey.publicKey));
-    body += "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(nacl.util.encodeBase64(App.myKey.publicKey));
+    body += "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(App.publicKey);
 
     mail += "&body=" + encodeURIComponent(body); 
     var mlink = document.createElement('a');
@@ -64,11 +56,6 @@ App = {
       console.log("DB opened")
       let store = openRequest.result.transaction("keys", "readwrite").objectStore("keys")
 
-      // mySecretkeyCipher = nacl.secretbox(App.myKey.secretKey, myNonce, nacl.util.decodeUTF8(myWachtwoord));
-
-      // console.log(myWachtwoord);
-      // console.log(mySecretkeyCipher);
-      //console.log(nacl.secretbox.open(mySecretkeyCipher, myNonce, myWachtwoord));
       cipher = CryptoJS.AES.encrypt(nacl.util.encodeBase64(App.myKey.secretKey), myWachtwoord).toString();
       plainBytes = CryptoJS.AES.decrypt(cipher, myWachtwoord)
       plain = plainBytes.toString(CryptoJS.enc.Utf8);
@@ -76,11 +63,9 @@ App = {
       console.log(nacl.util.encodeBase64(App.myKey.secretKey));
       console.log(cipher);
       console.log(plain);
+      App.publicKey = nacl.util.encodeBase64(App.myKey.publicKey);
 
-
-//      store.put({secretkey: nacl.util.encodeBase64(App.myKey.secretKey)}, '0')
-      store.put({secretkey: cipher}, '0') //  Aangepaste versie, nu met encryptie toegepast.
-
+      store.put({secretkey: cipher, publicKey: App.publicKey}, '0') //  Aangepaste versie, nu met encryptie toegepast.
     }
   },
 
@@ -99,27 +84,8 @@ App = {
         osc.onsuccess = function(e) {
           let cursor = e.target.result
           if (cursor) {
-
-            cipher = cursor.value["secretkey"];
-            console.log(cipher);
-            myWachtwoord = window.prompt("U heeft eerder al een encryptiekey aangemaakt. Geef het wachtwoord om de encryptiekey te openen.","");
-            plainBytes = CryptoJS.AES.decrypt(cipher, myWachtwoord)
-            plain = plainBytes.toString(CryptoJS.enc.Utf8);
-            console.log(plain);
-
-            if (plain == '') {
-              alert('U heeft een onjuist wachtwoord ingevuld. Laad de pagina opnieuw en vul nogmaals het wachwoord in.');
-            }
-            else
-            {
-              App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(plain))
-              console.log(App.myKey.secretKey)
-              console.log('En weer verder')
-            }
-
-
-            //storage.innerHTML += "Naam " + cursor.value["volledigeNaam"] + " : voornaam: " +  + ", emailadres " + cursor.value["emailAdres"] + ", publicKey " + cursor.value["publicKey"] + "<br>"
-            //cursor.continue()
+            App.publicKey = cursor.value["publicKey"];
+            console.log(App.publicKey);
           } else {
             console.log('createNewKey starten');
             App.createNewKey()
