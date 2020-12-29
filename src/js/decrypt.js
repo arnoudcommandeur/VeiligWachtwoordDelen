@@ -62,7 +62,7 @@ App = {
 
             cipher = cursor.value["secretkey"];
             console.log(cipher);
-            myWachtwoord = window.prompt("Geef wachtwoord om key te openen","");
+            myWachtwoord = window.prompt("Geef het wachtwoord om de encryptiekey te openen","");
             plainBytes = CryptoJS.AES.decrypt(cipher, myWachtwoord)
             plain = plainBytes.toString(CryptoJS.enc.Utf8);
             console.log(plain);
@@ -88,7 +88,6 @@ App = {
       alert("Enable to access IndexedDB, " + e.target.errorCode)
       }    
     })
-
   }
   // end App
 };

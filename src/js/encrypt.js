@@ -41,8 +41,8 @@ App = {
     body = "Hallo " + volledigeNaam + ", \n\n"
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + omschrijving + ". \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
-//    body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
-    body += "http://localhost:3000/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+    body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+//    body += "http://localhost:3000/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
