@@ -85,6 +85,10 @@ App = {
           let cursor = e.target.result
           if (cursor) {
             App.publicKey = cursor.value["publicKey"];
+            if (App.publicKey == '')
+            {
+              alert('Er is een technische fout opgetreden tijdens het inlezen van de keys.')
+            }
             console.log(App.publicKey);
           } else {
             console.log('createNewKey starten');

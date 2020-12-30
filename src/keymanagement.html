@@ -27,12 +27,12 @@
       >
         START
       </button>
-      <button
+      <!-- <button
         class="black full text-white"
-        onclick="window.location.href='keymanagement.html'"
+        onclick="window.location.href='showcollectibles.html'"
       >
-        Key management
-      </button> <!--
+        My Collectibles
+      </button>
       <button
         class="black full text-white"
         onclick="window.location.href='showqrcode.html'"
@@ -58,7 +58,7 @@
 			<div style="padding: 20pt" >
 
 				<p>
-          Voor het veilig aanvragen van een wachtwoord vult u de onderstaande gegevens in en klikt u op Email. Verstuur vervolgens de email naar de gewenste persoon.
+          Op deze pagina kun je alle zaken omtrent jouw keys regelen.
 				</p>
 			</div>
 
@@ -66,13 +66,7 @@
 
       <div class="list">
         <div class="item">
-          <input id="volledigeNaam" type="text" placeholder="Je eigen naam">
-        </div>
-        <div class="item">
-          <input id="emailAdres" type="text" placeholder="Je email adres">
-        </div>
-        <div class="item">
-          <button id="btncreateEmail" class="blue-900 radius full">Email</button>
+          <button id="btnCreateKeys" class="blue-900 radius full">Keys opnieuw inregelen</button>
         </div>
       </div>
       <div id='link'></div>
@@ -91,6 +85,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
 
-    <script type="text/javascript" src="js/index.js?jsversion=5"></script>
+    <script type="text/javascript" src="js/keymanagement.js?jsversion=3"></script>
   </body>
 </html>
