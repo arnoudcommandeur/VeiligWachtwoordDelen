@@ -39,6 +39,13 @@
       >
         Mijn profiel
       </button>
+ <!--
+      <button
+        class="black full text-white"
+        onclick="window.location.href='showqrcode.html'"
+      >
+        Collect
+      </button> -->
     </div>
     <div class="header blue-900 content">
       <button
@@ -51,22 +58,33 @@
 
 
 		<div class="content has-header" style="font-size: 14pt;" align="center">
-      <br>
 			<div align="center">
+        <br>
 				<img src="images/logo.PNG" height="100">
 			</div>
 			<div style="padding: 20pt" >
-				<h1 class="text-strong text-big">Welkom</h1>
 				<p>
-          U heeft een beveiligd wachtwoord ontvangen. 
-          <br><br>
-          Omschrijving: <div id="omschrijving"></div>
-          <br>
-          Wachtwoord: <div id="wachtwoord"></div>
+          Voor het veilig aanvragen van een wachtwoord controleer de onderstaande gegevens en klikt u op Email. Verstuur vervolgens de concept email naar de gewenste persoon.
 				</p>
-        <br>
 			</div>
+
+      <div id="medewerkers"></div>
+
+      <div class="list">
+        <div class="item">
+          <input id="volledigeNaam" type="text" placeholder="Je eigen naam">
+        </div>
+        <div class="item">
+          <input id="emailAdres" type="text" placeholder="Je email adres">
+        </div>
+        <div class="item">
+          <button id="btncreateEmail" class="blue-900 radius full">Creeer email</button>
+        </div>
+      </div>
+      <div id='link'></div>
+
     </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -77,6 +95,8 @@
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    <script type="text/javascript" src="js/decrypt.js"></script>
+    <script type="text/javascript" src="js/indexeddb.js"></script>
+
+    <script type="text/javascript" src="js/request.js?jsversion=6"></script>
   </body>
 </html>

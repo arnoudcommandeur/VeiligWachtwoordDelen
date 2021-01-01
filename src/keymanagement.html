@@ -27,18 +27,18 @@
       >
         START
       </button>
-      <!-- <button
+      <button
         class="black full text-white"
-        onclick="window.location.href='showcollectibles.html'"
+        onclick="window.location.href='keymanagement.html'"
       >
-        My Collectibles
+        Key management
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='showqrcode.html'"
+        onclick="window.location.href='profile.html'"
       >
-        Collect
-      </button> -->
+        Mijn profiel
+      </button>
     </div>
     <div class="header blue-900 content">
       <button
@@ -48,29 +48,39 @@
       ></button>
       <h1>Veilig Wachtwoord Sturen</h1>
     </div>
-
-
 		<div class="content has-header" style="font-size: 14pt;" align="center">
 			<div align="center">
         <br>
-				<img src="images/logo.PNG" height="200">
+				<img src="images/logo.PNG" height="100">
 			</div>
 			<div style="padding: 20pt" >
 
 				<p>
-          Op deze pagina kun je alle zaken omtrent jouw keys regelen.
+          Op deze pagina kun je alle zaken omtrent jouw key regelen.
 				</p>
 			</div>
 
-      <div id="medewerkers"></div>
-
-      <div class="list">
+      <div id="divMenu" class="list">
         <div class="item">
-          <button id="btnCreateKeys" class="blue-900 radius full">Keys opnieuw inregelen</button>
+          <button id="btnShowKeys" class="blue-900 radius full">Toon mijn key</button>
+          <br>
+          <br>
+          <button id="btnCreateBackupKeys" class="blue-900 radius full">Maak backup key</button>
+          <br>
+          <br>
+          <button id="btnImportBackupKeys" class="blue-900 radius full">Importeer backup key</button>
+          <br>
         </div>
       </div>
-      <div id='link'></div>
-
+      <!-- <div id='link'></div> -->
+      <div id='divShowKeys' style="display:none">
+        Public key: 123344567
+        <br>
+        <br>
+        <div id="qrcodeCanvas" align="center"></div>
+        <br>
+        <button id="btnBack" class="blue-900 radius full">Terug</button>
+      </div>
     </div>
 
 
@@ -84,7 +94,8 @@
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
+    <script src="js/library/jquery.qrcode.min.js"></script>
 
-    <script type="text/javascript" src="js/keymanagement.js?jsversion=3"></script>
+    <script type="text/javascript" src="js/keymanagement.js?jsversion=8"></script>
   </body>
 </html>

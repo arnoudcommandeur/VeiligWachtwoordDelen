@@ -32,13 +32,13 @@
         onclick="window.location.href='keymanagement.html'"
       >
         Key management
-      </button> <!--
+      </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='showqrcode.html'"
+        onclick="window.location.href='profile.html'"
       >
-        Collect
-      </button> -->
+        Mijn profiel
+      </button>
     </div>
     <div class="header blue-900 content">
       <button
@@ -53,30 +53,21 @@
 		<div class="content has-header" style="font-size: 14pt;" align="center">
 			<div align="center">
         <br>
-				<img src="images/logo.PNG" height="200">
+				<img src="images/logo.PNG" height="100">
 			</div>
 			<div style="padding: 20pt" >
-
 				<p>
-          Voor het veilig aanvragen van een wachtwoord vult u de onderstaande gegevens in en klikt u op Email. Verstuur vervolgens de email naar de gewenste persoon.
+          Welkom bij Veilig Wachtwoord Sturen. Via deze site kun je veilig wachtwoorden sturen. Maak hieronder uw keuze:
 				</p>
 			</div>
-
-      <div id="medewerkers"></div>
-
-      <div class="list">
-        <div class="item">
-          <input id="volledigeNaam" type="text" placeholder="Je eigen naam">
-        </div>
-        <div class="item">
-          <input id="emailAdres" type="text" placeholder="Je email adres">
-        </div>
-        <div class="item">
-          <button id="btncreateEmail" class="blue-900 radius full">Email</button>
-        </div>
-      </div>
-      <div id='link'></div>
-
+      Ik wil een wachtwoord versturen
+      <button id="btnWachtwoordSturen" class="blue-900 radius full">Wachtwoord versturen</button>
+      <br><br>
+      Ik wil een wachtwoord opvragen
+      <button id="btnWachtwoordOpvragen" class="blue-900 radius full">Wachtwoord opvragen</button>
+      <br><br>
+      Ik wil mijn key beheren
+      <button id="btnKeyManagement" class="blue-900 radius full">Key management</button>
     </div>
 
 
@@ -91,6 +82,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
 
-    <script type="text/javascript" src="js/index.js?jsversion=5"></script>
+    <script type="text/javascript" src="js/index.js?jsversion=7"></script>
   </body>
 </html>

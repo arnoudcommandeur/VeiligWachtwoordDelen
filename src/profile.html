@@ -27,18 +27,18 @@
       >
         START
       </button>
-      <!-- <button
+      <button
         class="black full text-white"
-        onclick="window.location.href='showcollectibles.html'"
+        onclick="window.location.href='keymanagement.html'"
       >
-        My Collectibles
+        Key management
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='showqrcode.html'"
+        onclick="window.location.href='profile.html'"
       >
-        Collect
-      </button> -->
+        Mijn profiel
+      </button>
     </div>
     <div class="header blue-900 content">
       <button
@@ -53,20 +53,29 @@
 		<div class="content has-header" style="font-size: 14pt;" align="center">
 			<div align="center">
         <br>
-				<img src="images/logo.PNG" height="200">
+				<img src="images/logo.PNG" height="100">
 			</div>
 			<div style="padding: 20pt" >
 				<p>
-          Welkom bij Veilig Wachtwoord Sturen. Maak hieronder uw keuze:
+          Wijzig op deze pagina je persoonlijke gegevens
 				</p>
 			</div>
-      Ik wil een wachtwoord versturen
 
-      <br><br>
-
-      Ik wil een wachtwoord opvragen
-
-
+      <div class="list">
+        <div class="item">
+          <input id="txtNaam" type="text" placeholder="Voor- en achternaam">
+        </div>
+        <div class="item">
+          <input id="txtEmailAdres" type="text" placeholder="Email adres">
+        </div>
+        <div class="item">
+          <button id="btnOpslaan" class="blue-900 radius full">Opslaan</button>
+        </div>
+        <div class="item">
+          <br>
+          <button id="btnInitProfile" class="blue-900 radius full">Profiel en key opnieuw genereren</button>
+        </div>
+      </div>
     </div>
 
 
@@ -81,6 +90,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
 
-    <script type="text/javascript" src="js/index2.js?jsversion=4"></script>
+    <script type="text/javascript" src="js/profile.js?jsversion=10"></script>
   </body>
 </html>
