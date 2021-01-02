@@ -69,6 +69,10 @@
           <input id="txtEmailAdres" type="text" placeholder="Email adres">
         </div>
         <div class="item">
+          <div id="qrcodeCanvas" align="center"></div>
+          Public key: <div id='divPublicKey'></div>
+        </div>
+        <div class="item">
           <button id="btnOpslaan" class="blue-900 radius full">Opslaan</button>
         </div>
         <div class="item">
@@ -89,6 +93,7 @@
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
+    <script src="js/library/jquery.qrcode.min.js"></script>
 
     <script type="text/javascript" src="js/profile.js?jsversion=10"></script>
   </body>

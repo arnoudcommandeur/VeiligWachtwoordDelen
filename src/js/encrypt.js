@@ -32,6 +32,11 @@ App = {
     omschrijving = document.getElementById("omschrijving").value
     message = document.getElementById("wachtwoord").value
 
+    if (publicKeyReciever == null) {
+        alert('Er is een fout opgetreden. Public key van de ontvanger is onbekend. Scan QR code van de ontvanger of gebruik een link van de geadresseerde en probeer opnieuw.');
+        return;
+    }
+
     cipher = nacl.box(nacl.util.decodeUTF8(message), nonce, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
     //console.log(cipher);
 

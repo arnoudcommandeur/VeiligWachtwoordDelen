@@ -62,9 +62,9 @@
 
       <div id="divMenu" class="list">
         <div class="item">
-          <button id="btnShowKeys" class="blue-900 radius full">Toon mijn key</button>
+          <!-- <button id="btnShowKeys" class="blue-900 radius full">Toon mijn key</button>
           <br>
-          <br>
+          <br> -->
           <button id="btnCreateBackupKeys" class="blue-900 radius full">Maak backup key</button>
           <br>
           <br>
@@ -74,7 +74,7 @@
       </div>
       <!-- <div id='link'></div> -->
       <div id='divShowKeys' style="display:none">
-        Public key: 123344567
+        Public key: <div id='divPublicKey'></div>
         <br>
         <br>
         <div id="qrcodeCanvas" align="center"></div>
@@ -96,6 +96,6 @@
     <script type="text/javascript" src="js/indexeddb.js"></script>
     <script src="js/library/jquery.qrcode.min.js"></script>
 
-    <script type="text/javascript" src="js/keymanagement.js?jsversion=8"></script>
+    <script type="text/javascript" src="js/keymanagement.js?jsversion=9"></script>
   </body>
 </html>
