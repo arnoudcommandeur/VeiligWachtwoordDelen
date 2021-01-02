@@ -14,11 +14,6 @@ App = {
     //console.log(App.myKey.publicKey);
     const btncreateEmail = document.querySelector('#createEmail');
 
-    // btncreateEmail.addEventListener('click', async function(event){
-    //   App.createEmail();
-    // });
-    //App.decrypt();
-
     return true;
   },
 
@@ -46,16 +41,16 @@ App = {
 
   initKey: function() { 
     return new Promise(function(resolve) {
-      var r = window.indexedDB.open('infent')
+      var r = window.indexedDB.open('VeiligWachtwoordSturen')
       r.onupgradeneeded = function() {
         var idb = r.result
-        var store = idb.createObjectStore('keys', {keyPath: "key"})
+        var store = idb.createObjectStore('Profile', {keyPath: "key"})
       }
       r.onsuccess = function() {
         var idb = r.result
 
-        let tactn = idb.transaction('keys', "readonly")
-        let osc = tactn.objectStore('keys').openCursor()
+        let tactn = idb.transaction('Profile', "readonly")
+        let osc = tactn.objectStore('Profile').openCursor()
         osc.onsuccess = function(e) {
           let cursor = e.target.result
           if (cursor) {
