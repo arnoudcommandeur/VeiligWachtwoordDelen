@@ -8,7 +8,8 @@ App = {
     const btncreateEmail = document.querySelector('#btncreateEmail');
     btncreateEmail.addEventListener('click', async function(event){
       alert('Er wordt nu een concept email gegenereerd. Vul het emailadres van de geadresseerde in en verstuur de email.');
-      App.encrypt();
+      //App.encrypt();
+      App.encryptShareAPI();
     });
 
     App.openDB();
@@ -35,6 +36,46 @@ App = {
     var mlink = document.createElement('a');
     mlink.setAttribute('href', mail);
     mlink.click();
+
+    //alert(cipher);
+    return true;
+  },
+
+  encryptShareAPI: async function() {
+
+
+    volledigeNaam = document.getElementById("volledigeNaam").value;  
+    emailAdres = document.getElementById("emailAdres").value;  
+
+    var mail = "mailto:"
+    mail += "?subject=Verzoek voor wachtwoord uitwisseling"
+
+    body = "Hallo\n\n"
+    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord.\n\n"
+    body += "Klik op de link hieronder om het wachtwoord veilig te delen: "
+//    body += "http://localhost:3000/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(nacl.util.encodeBase64(App.myKey.publicKey));
+    body += "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(App.publicKey);
+
+    mail += "&body=" + encodeURIComponent(body); 
+    var mlink = document.createElement('a');
+    mlink.setAttribute('href', mail);
+    //mlink.click();
+
+myUrl = "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(volledigeNaam) + "&emailAdres=" + encodeURIComponent(emailAdres) + "&publicKeyReciever=" + encodeURIComponent(App.publicKey);
+
+const shareData = {
+  title: 'Veilig Wachtwoord Sturen',
+  text: 'Klik op de link om veilig een wachtwoord te sturen',
+  url: myUrl,
+}
+
+  try {
+    await navigator.share(shareData)
+    console.log('Link shared successfully')
+  } catch(err) {
+    console.log(err);
+    // resultPara.innerHTML = 'Error: ' + err
+  }
 
     //alert(cipher);
     return true;
@@ -183,3 +224,24 @@ $(function() {
     App.init();
   });
 });
+
+
+// const shareData = {
+//   title: 'MDN',
+//   text: 'Learn web development on MDN!',
+//   url: 'https://developer.mozilla.org',
+// }
+
+// const btn = document.getElementById('share');
+// const resultPara = document.getElementById('result');
+
+// // Must be triggered some kind of "user activation"
+// btn.addEventListener('click', async () => {
+//   try {
+//     await navigator.share(shareData)
+//     console.log('MDN shared successfully')
+//   } catch(err) {
+//     console.log(err);
+//     // resultPara.innerHTML = 'Error: ' + err
+//   }
+// });

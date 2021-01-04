@@ -55,8 +55,9 @@
 			</div> -->
 			<div style="padding: 20pt" >
 				<p>
-          Voor het veilig opvragen van een wachtwoord heeft de andere persoon jouw public key nodig. Door op onderstaande knop te klikken wordt een email klaargezet met jouw public key.
-          Verstuur vervolgens deze email naar de gewenste persoon. De geadresseerde kan vervolgens de link in de email gebruiken om het wachtwoord veilig terug te sturen.
+          Voor het veilig opvragen van een wachtwoord heeft de andere persoon jouw public key nodig. Door op onderstaande knop te klikken wordt een link klaargezet met jouw public key.
+          Verstuur deze link naar de persoon waarmee u een wachtwoord wilt uitwisselen. 
+          De geadresseerde kan vervolgens de link gebruiken om het wachtwoord veilig terug te sturen.
 				</p>
 			</div>
       <div class="list">
@@ -67,11 +68,12 @@
           <input id="emailAdres" type="text" placeholder="Je email adres">
         </div>
         <div class="item">
-          <button id="btncreateEmail" class="blue-900 radius full">Creeer email</button>
+          <button id="btncreateEmail" class="blue-900 radius full">Link delen</button>
         </div>
       </div>
       <div id='link'></div>
-
+<!-- <button id='share'>Share Public Key</button>
+<div id='result'></div> -->
     </div>
 
 
@@ -86,6 +88,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
 
-    <script type="text/javascript" src="js/request.js?jsversion=6"></script>
+    <script type="text/javascript" src="js/request.js?jsversion=7"></script>
   </body>
 </html>
