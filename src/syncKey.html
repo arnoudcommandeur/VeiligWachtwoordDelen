@@ -57,7 +57,7 @@
 			</div>
 			<div style="padding: 20pt" >
 				<div id="divHeader">
-          Maak op deze pagina je profiel aan
+          Controleer of de getoonde gegevens overeenkomen met de andere computer en klik op Profiel importeren
 				</div>
 			</div>
 
@@ -68,16 +68,14 @@
         <div class="item">
           <input id="txtEmailAddress" type="text" placeholder="Email adres">
         </div> 
-        <div id="divPassword" style="display: none">
         <div class="item">
-          <input id="txtPassword1" type="text" placeholder="Wachtwoord">
+          <input id="txtPublicKey" type="text" placeholder="Public Key">
         </div>
         <div class="item">
-          <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
-        </div>
+          <input id="txtSecretKey" type="hidden" placeholder="Private Key">
         </div>
         <div class="item">
-          <button id="btnOpslaan" class="blue-900 radius full">Opslaan</button>
+          <button id="btnImportProfile" class="blue-900 radius full">Profiel importeren</button>
         </div>
       </div>
     </div>
@@ -96,6 +94,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/profile.js?jsversion=10"></script>
+    <script type="text/javascript" src="js/syncKey.js?jsversion=11"></script>
   </body>
 </html>

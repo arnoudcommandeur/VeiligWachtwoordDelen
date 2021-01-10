@@ -1,20 +1,32 @@
 App = {
 
-  //myKey: null,
-  publicKey: null,
+  profileStore: null,
 
-  init: function() {
+  init: async function() {
     //alert('App.init');
-    const btncreateEmail = document.querySelector('#btncreateEmail');
-    btncreateEmail.addEventListener('click', async function(event){
-      //alert('Er wordt nu een concept email gegenereerd. Vul het emailadres van de geadresseerde in en verstuur de email.');
-      //App.encrypt();
+    App.profileStore = initStore();
+
+    await App.readProfile();
+
+    const btnCreateMessage = document.querySelector('#btnCreateMessage');
+    btnCreateMessage.addEventListener('click', async function(event){
       App.encryptShareAPI();
     });
 
-    App.openDB();
+    //App.openDB();
 
     return true;
+  },
+
+  readProfile: async function() {
+
+    profile = await getProfile(App.profileStore);
+    document.getElementById("txtName").value = profile.name;  
+    document.getElementById("txtEmailAddress").value = profile.emailAddress;  
+
+    cipher = profile.secretKey;
+    publicKey = profile.publicKey;
+
   },
 
   encrypt: function() {
@@ -44,8 +56,8 @@ App = {
   encryptShareAPI: async function() {
 
 
-    volledigeNaam = document.getElementById("volledigeNaam").value;  
-    emailAdres = document.getElementById("emailAdres").value;  
+    Name = document.getElementById("txtName").value;  
+    EmailAddress = document.getElementById("txtEmailAddress").value;  
 
     var mail = "mailto:"
     mail += "?subject=Verzoek voor wachtwoord uitwisseling"
@@ -220,8 +232,8 @@ const shareData = {
 };
 
 $(function() {
-  $(window).load(function() {
-    App.init();
+  $(window).load(async function() {
+    await App.init();
   });
 });
 

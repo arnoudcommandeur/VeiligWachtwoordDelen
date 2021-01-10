@@ -56,7 +56,7 @@
 			<div style="padding: 20pt" >
 
 				<p>
-          Op deze pagina kun je alle zaken omtrent jouw key regelen.
+          Kopieer jouw profiel naar een andere computer zodat je ook op die computer de naar jou gestuurde wachtwoorden kunt gebruiken. Let erop dat niemand mee kan kijken met deze QR Code!
 				</p>
 			</div>
 
@@ -65,20 +65,21 @@
           <!-- <button id="btnShowKeys" class="blue-900 radius full">Toon mijn key</button>
           <br>
           <br> -->
-          <button id="btnCreateBackupKeys" class="blue-900 radius full">Maak backup key</button>
+          <!-- <button id="btnCreateBackupKey" class="blue-900 radius full">Maak backup key</button>
           <br>
           <br>
-          <button id="btnImportBackupKeys" class="blue-900 radius full">Importeer backup key</button>
+          <button id="btnImportBackupKey" class="blue-900 radius full">Importeer backup key</button>
+          <br> -->
+          <br>
+          <button id="btnSyncKey" class="blue-900 radius full">Synchroniseer key</button>
           <br>
         </div>
       </div>
-      <!-- <div id='link'></div> -->
-      <div id='divShowKeys' style="display:none">
-        Public key: <div id='divPublicKey'></div>
-        <br>
-        <br>
-        <div id="qrcodeCanvas" align="center"></div>
-        <br>
+      <div id='divShowKey' style="display:none">
+        <div class="item">
+          <div id="qrcodeCanvas" align="center"></div>
+          Public key: <div id='divPublicKey'></div>
+        </div>
         <button id="btnBack" class="blue-900 radius full">Terug</button>
       </div>
     </div>
@@ -95,6 +96,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
     <script src="js/library/jquery.qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
+    <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
     <script type="text/javascript" src="js/keymanagement.js?jsversion=9"></script>
   </body>
