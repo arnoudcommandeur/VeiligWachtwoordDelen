@@ -2,72 +2,66 @@ App = {
 
   keySender: null,
 
-  init: function() {
+  init: async function() {
     //alert('App.init');
     App.keySender = nacl.box.keyPair();
 
     //console.log(App.keySender.publicKey);
-    const btncreateEmail = document.querySelector('#createEmail');
+    const btnSendMessage = document.querySelector('#btnSendMessage');
 
-    btncreateEmail.addEventListener('click', async function(event){
-      App.createEmail();
+    btnSendMessage.addEventListener('click', async function(event){
+      await App.sendMessage();
     });
 
     return true;
   },
 
-  createEmail: function() {
+  sendMessage: async function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    //nonce = nacl.util.encodeBase64(nacl.randomBytes(nacl.box.nonceLength));
     nonce = nacl.randomBytes(nacl.box.nonceLength);  
-    //console.log(nonce);
 
-    volledigeNaam = urlParams.get('volledigeNaam'); 
-    emailAdres = urlParams.get('emailAdres');  
+    name = urlParams.get('name'); 
+    emailAddress = urlParams.get('emailAddress');  
     publicKeyReciever = urlParams.get('publicKeyReciever');
     publicKeySender = App.keySender.publicKey;
-    console.log(publicKeySender);
-    omschrijving = document.getElementById("omschrijving").value
-    message = document.getElementById("wachtwoord").value
+    //console.log(publicKeySender);
+    description = document.getElementById("txtDescription").value
+    secret = document.getElementById("txtSecret").value
 
     if (publicKeyReciever == null) {
         alert('Er is een fout opgetreden. Public key van de ontvanger is onbekend. Scan QR code van de ontvanger of gebruik een link van de geadresseerde en probeer opnieuw.');
         return;
     }
 
-    cipher = nacl.box(nacl.util.decodeUTF8(message), nonce, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
-    //console.log(cipher);
+    cipher = nacl.box(nacl.util.decodeUTF8(secret), nonce, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
 
-    var mail = "mailto:" + emailAdres
+    var mail = "mailto:" + emailAddress
     mail += "?subject=Versleuteld bericht"
 
-    body = "Hallo " + volledigeNaam + ", \n\n"
-    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + omschrijving + ". \n\n"
+    body = "Hallo " + name + ", \n\n"
+    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + description + ". \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
-    body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
-//    body += "http://localhost:3000/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&omschrijving=" + encodeURIComponent(omschrijving) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+    //body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
 
-
     console.log(mail);
-//    console.log("Public Key=" + nacl.util.encodeBase64(App.keySender.publicKey));
-//    console.log("Nonce=" + nonce);
+
     var mlink = document.createElement('a');
     mlink.setAttribute('href', mail);
     mlink.click();
 
-    //alert(cipher);
     return true;
   }
   // end App
 };
 
 $(function() {
-  $(window).load(function() {
-    App.init();
+  $(window).load(async function() {
+    await App.init();
   });
 });

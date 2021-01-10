@@ -24,6 +24,13 @@ App = {
 
     profile = await getProfile(App.profileStore);
 
+    if (await checkProfile(App.profileStore)) {
+      //window.location.href = 'request.html';
+    } else {
+      alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kunt u een bestaand profiel via een QR scanner toevoegen.');
+      return false;
+    }
+
     const divShowKey = document.querySelector('#divShowKey')
     const divMenu = document.querySelector('#divMenu')
 
@@ -50,6 +57,7 @@ App = {
     divMenu.style.display = ''
     divShowKeys.style.display = 'none';
 
+    location.href = 'index.html';
     return true;
   }
   // end App

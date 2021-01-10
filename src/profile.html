@@ -69,15 +69,20 @@
           <input id="txtEmailAddress" type="text" placeholder="Email adres">
         </div> 
         <div id="divPassword" style="display: none">
-        <div class="item">
-          <input id="txtPassword1" type="text" placeholder="Wachtwoord">
+          <div class="item">
+            <input id="txtPassword1" type="text" placeholder="Wachtwoord">
+          </div>
+          <div class="item">
+            <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
+          </div>
         </div>
         <div class="item">
-          <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
+          <button id="btnSave" class="blue-900 radius full">Opslaan</button>
         </div>
-        </div>
-        <div class="item">
-          <button id="btnOpslaan" class="blue-900 radius full">Opslaan</button>
+        <div id="divResetProfile" style="display: none">
+          <div class="item">
+            <button id="btnResetProfile" class="blue-900 radius full">Reset profiel</button>
+          </div>
         </div>
       </div>
     </div>
@@ -96,6 +101,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/profile.js?jsversion=10"></script>
+    <script type="text/javascript" src="js/profile.js?jsversion=12"></script>
   </body>
 </html>

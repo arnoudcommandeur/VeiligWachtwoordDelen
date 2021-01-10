@@ -42,3 +42,9 @@ async function saveProfile(_profileStore, _index, _secretKey, _publicKey, _name,
         return value;
     }
 };
+
+async function resetProfile(_profileStore) {
+
+    await idbKeyval.clear(_profileStore);
+
+};

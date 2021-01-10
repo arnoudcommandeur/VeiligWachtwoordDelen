@@ -7,43 +7,33 @@ App = {
 
     App.profileStore = initStore();
 
+
     if ((await checkProfile(App.profileStore)) == false) {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
       document.getElementById("divPassword").style.display = '';
     } else {
       document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel';
+      document.getElementById("divResetProfile").style.display = '';
+
+
       await App.showProfile();
       //await App.showKeys();
     }
+//console.log('jaja');
 
-    const btnOpslaan = document.querySelector('#btnOpslaan');
-
-    btnOpslaan.addEventListener('click', async function(event){
-
+    const btnSave = document.querySelector('#btnSave');
+    btnSave.addEventListener('click', async function(event){
       await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
       window.location.reload();
     });
 
+    const btnResetProfile = document.querySelector('#btnResetProfile');
+    btnResetProfile.addEventListener('click', async function(event){
+      await App.resetProfile();
+      window.location.reload();
+    });
+
     return true;
-  },
-
-  showKeys: async function() { 
-
-    profile = await getProfile(App.profileStore);
-    cipher = profile.secretKey;
-    publicKey = profile.publicKey;
-
-    document.getElementById("divPublicKey").innerHTML = App.publicKey;
-
-    url = "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(profile.name) + "&emailAdres=" + encodeURIComponent(profile.emailAddress) + "&publicKeyReciever=" + encodeURIComponent(profile.publicKey);
-    console.log(url);
-
-    jQuery('#qrcodeCanvas').qrcode({
-        text: url
-    })
-
-    document.getElementById("divPublicKey").innerHTML = publicKey;
-
   },
 
   showProfile: async function() {
@@ -77,6 +67,30 @@ App = {
       await saveProfile(App.profileStore, 0, cipher, publicKey, _name, _emailAddress);
     }    
   },
+
+  resetProfile: async function() {
+    await idbKeyval.clear(App.profileStore);
+    location.reload();
+  }
+
+  // showKeys: async function() { 
+
+  //   profile = await getProfile(App.profileStore);
+  //   cipher = profile.secretKey;
+  //   publicKey = profile.publicKey;
+
+  //   document.getElementById("divPublicKey").innerHTML = App.publicKey;
+
+  //   url = "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(profile.name) + "&emailAdres=" + encodeURIComponent(profile.emailAddress) + "&publicKeyReciever=" + encodeURIComponent(profile.publicKey);
+  //   console.log(url);
+
+  //   jQuery('#qrcodeCanvas').qrcode({
+  //       text: url
+  //   })
+
+  //   document.getElementById("divPublicKey").innerHTML = publicKey;
+
+  // },
 
   // createNewProfile: function() {
 
