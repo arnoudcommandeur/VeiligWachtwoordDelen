@@ -1,23 +1,41 @@
 App = {
 
+  profileStore: null,
+
   init: function() {
     //alert('App.init');
+
+    App.profileStore = initStore();
+
     const btnWachtwoordSturen = document.querySelector('#btnWachtwoordSturen');
     const btnWachtwoordOpvragen = document.querySelector('#btnWachtwoordOpvragen');
     const btnKeyManagement = document.querySelector('#btnKeyManagement');
 
     btnWachtwoordSturen.addEventListener('click', async function(event){
-      window.location.href = 'encrypt.html';
+      if (await checkProfile(App.profileStore)) {
+        //window.location.href = 'encrypt.html';
+      } else {
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken.');
+      }
     });
     btnWachtwoordOpvragen.addEventListener('click', async function(event){
-      window.location.href = 'request.html';
+      if (await checkProfile(App.profileStore)) {
+        window.location.href = 'request.html';
+      } else {
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken.');
+      }
     });
     btnKeyManagement.addEventListener('click', async function(event){
-      window.location.href = 'keymanagement.html';
+      if (await checkProfile(App.profileStore)) {
+        window.location.href = 'keymanagement.html';
+      } else {
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken.');
+      }
     });
 
     return true;
   },
+
 
   // end App
 };

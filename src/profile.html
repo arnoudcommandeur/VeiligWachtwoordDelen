@@ -57,28 +57,34 @@
 			</div>
 			<div style="padding: 20pt" >
 				<p>
-          Wijzig op deze pagina je persoonlijke gegevens
+          Maak op deze pagina je profiel aan
 				</p>
 			</div>
 
       <div class="list">
         <div class="item">
-          <input id="txtNaam" type="text" placeholder="Voor- en achternaam">
+          <input id="txtName" type="text" placeholder="Voor- en achternaam">
         </div>
         <div class="item">
-          <input id="txtEmailAdres" type="text" placeholder="Email adres">
+          <input id="txtEmailAddress" type="text" placeholder="Email adres">
         </div>
         <div class="item">
+          <input id="txtPassword1" type="text" placeholder="Wachtwoord">
+        </div>
+        <div class="item">
+          <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
+        </div>
+        <div class="item" >
           <div id="qrcodeCanvas" align="center"></div>
           Public key: <div id='divPublicKey'></div>
         </div>
         <div class="item">
           <button id="btnOpslaan" class="blue-900 radius full">Opslaan</button>
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <br>
           <button id="btnInitProfile" class="blue-900 radius full">Profiel en key opnieuw genereren</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -94,6 +100,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script type="text/javascript" src="js/indexeddb.js"></script>
     <script src="js/library/jquery.qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
+    <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
     <script type="text/javascript" src="js/profile.js?jsversion=10"></script>
   </body>

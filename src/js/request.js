@@ -7,7 +7,7 @@ App = {
     //alert('App.init');
     const btncreateEmail = document.querySelector('#btncreateEmail');
     btncreateEmail.addEventListener('click', async function(event){
-      alert('Er wordt nu een concept email gegenereerd. Vul het emailadres van de geadresseerde in en verstuur de email.');
+      //alert('Er wordt nu een concept email gegenereerd. Vul het emailadres van de geadresseerde in en verstuur de email.');
       //App.encrypt();
       App.encryptShareAPI();
     });

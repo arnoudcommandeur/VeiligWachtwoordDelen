@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/arnoudcommandeur/VeiligWachtwoordDelen#readme",
   "dependencies": {
+    "idb-keyval": "^3.2.0",
     "lite-server": "^2.6.1",
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1"
