@@ -19,7 +19,7 @@ App = {
     btnImportProfile.addEventListener('click', async function(event){
 
       await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPublicKey').value, document.getElementById('txtSecretKey').value);
-      window.location.href = 'index.html';
+      window.location.href = 'index.html?t='+ (new Date().getTime());
     });
 
     return true;

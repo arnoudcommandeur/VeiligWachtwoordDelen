@@ -33,7 +33,7 @@ App = {
     name = document.getElementById("txtName").value;  
     emailAddress = document.getElementById("txtEmailAddress").value;  
 
-    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/profile.html?type=0";
+    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/profile.html?type=0&t="+ (new Date().getTime());
 
     const shareData = {
       title: 'Veilig Wachtwoord Sturen',
@@ -52,10 +52,12 @@ App = {
       var mail = "mailto:"
       mail += "?subject=Aanvraag om wachtwoord te delen"
 
-      body = "U ontvangt deze email omdat " + name + " aan u een beveiligd wachtwoord wilt sturen. \n\n"
+      body = "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
       body += "Klik op de link om het proces van een veilige wachtwoord uitwisseling te starten: "
-      body += url + '\n\n'
+      body += url
       body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
+      body += "\n\nMet een vriendelijke groet,";
+      body += "\n" + name;
 
       mail += "&body=" + encodeURIComponent(body); 
 
@@ -64,7 +66,7 @@ App = {
       mlink.click();
 
     }
-    location.href = 'index.html';
+    location.href = 'index.html?t='+ (new Date().getTime());
   },
 };
 

@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <title>Veilig Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
@@ -23,19 +27,19 @@
     <div id="myMenu" class="menu blue-900">
       <button
         class="black full text-white"
-        onclick="window.location.href='index.html'"
+        onclick="javascript:window.location.href='index.html?t='+ (new Date().getTime());"
       >
         START
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='keymanagement.html'"
+        onclick="javascript:window.location.href='keymanagement.html?t='+ (new Date().getTime());"
       >
         Key management
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='profile.html'"
+        onclick="javascript:window.location.href='profile.html?t='+ (new Date().getTime());"
       >
         Mijn profiel
       </button>
@@ -85,7 +89,7 @@
           </div>
         </div>
         <div class="item">
-          <button id="btnSave" class="blue-900 radius full">Opslaan</button>
+          <button id="btnSave" class="blue-900 radius full">Opslaan12345</button>
         </div>
         <div id="divResetProfile" style="display: none">
           <div class="item">
@@ -109,6 +113,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/profile.js?jsversion=15"></script>
+    <script type="text/javascript" src="js/profile.js?jsversion=20"></script>
   </body>
 </html>

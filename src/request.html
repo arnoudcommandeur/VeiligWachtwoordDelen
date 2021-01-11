@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <title>Veilig Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
@@ -23,19 +27,19 @@
     <div id="myMenu" class="menu blue-900">
       <button
         class="black full text-white"
-        onclick="window.location.href='index.html'"
+        onclick="javascript:window.location.href='index.html?t='+ (new Date().getTime());"
       >
         START
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='keymanagement.html'"
+        onclick="javascript:window.location.href='keymanagement.html?t='+ (new Date().getTime());"
       >
         Key management
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='profile.html'"
+        onclick="javascript:window.location.href='profile.html?t='+ (new Date().getTime());"
       >
         Mijn profiel
       </button>
@@ -55,7 +59,9 @@
 			</div> -->
 			<div style="padding: 20pt" >
 				<p>
-          Voor het veilig opvragen van een wachtwoord heeft de andere persoon jouw public key nodig. Klik op Link delen om jouw key te delen.
+          Voor het veilig delen van een wachtwoord heeft de ander eerst jouw public key nodig. 
+          <br><br>
+          Klik op de knop om jouw key te delen.
 				</p>
 			</div>
       <div class="list">
@@ -66,7 +72,7 @@
           <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
         <!-- </div> -->
         <div class="item">
-          <button id="btnCreateMessage" class="blue-900 radius full">Link delen</button>
+          <button id="btnCreateMessage" class="blue-900 radius full">Public key delen</button>
         </div>
       </div>
       <div id='link'></div>
@@ -88,6 +94,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/request.js?jsversion=12"></script>
+    <script type="text/javascript" src="js/request.js?jsversion=15"></script>
   </body>
 </html>

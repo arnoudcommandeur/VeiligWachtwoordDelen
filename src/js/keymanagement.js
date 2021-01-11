@@ -57,7 +57,7 @@ App = {
     // divMenu.style.display = ''
     // divShowKeys.style.display = 'none';
 
-    location.href = 'index.html';
+    location.href = 'index.html?t='+ (new Date().getTime());
     return true;
   }
   // end App

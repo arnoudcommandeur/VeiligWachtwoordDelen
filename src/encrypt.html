@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <title>Veilig Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
@@ -23,19 +27,19 @@
     <div id="myMenu" class="menu blue-900">
       <button
         class="black full text-white"
-        onclick="window.location.href='index.html'"
+        onclick="javascript:window.location.href='index.html?t='+ (new Date().getTime());"
       >
         START
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='keymanagement.html'"
+        onclick="javascript:window.location.href='keymanagement.html?t='+ (new Date().getTime());"
       >
         Key management
       </button>
       <button
         class="black full text-white"
-        onclick="window.location.href='profile.html'"
+        onclick="javascript:window.location.href='profile.html?t='+ (new Date().getTime());"
       >
         Mijn profiel
       </button>
@@ -57,8 +61,7 @@
 			</div> -->
 			<div style="padding: 20pt" >
 				<p>
-          Voor het veilig delen van het wachtwoord vul je hieronder de omschrijving en het wachtwoord in. Klik vervolgens op Creeer email om een concept email op te stellen.
-          Verstuur deze email vervolgens naar het emailadres dat al ingevuld is.
+          Voor het veilig delen van het wachtwoord vul je hieronder de omschrijving en het wachtwoord in. Klik vervolgens op Creeer email en verstuur.
 				</p>
         <br>
 			</div>

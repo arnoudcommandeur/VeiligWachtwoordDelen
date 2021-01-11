@@ -44,7 +44,7 @@ App = {
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + description + ". \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
     //body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
-    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
+    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) + "&t="+ (new Date().getTime());
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
@@ -55,7 +55,7 @@ App = {
     mlink.setAttribute('href', mail);
     mlink.click();
 
-    location.href = 'index.html'
+    location.href = 'index.html?t='+ (new Date().getTime());
     return true;
   }
   // end App

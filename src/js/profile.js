@@ -17,14 +17,14 @@ App = {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
       document.getElementById("divPassword").style.display = '';
     } else {
-      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel';
+      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel123';
       document.getElementById("divResetProfile").style.display = '';
       document.getElementById("divPublicKeyMain").style.display = '';
 
       await App.showProfile();
 
       if (App.type==0) {
-        window.location.href='request.html';
+        window.location.href='request.html?t='+ (new Date().getTime());
       }
       //await App.showKeys();
     }
@@ -34,9 +34,9 @@ App = {
     btnSave.addEventListener('click', async function(event){
       await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
       if (App.type==0) {
-        window.location.href='request';
+        window.location.href='request.html?t='+ (new Date().getTime());
       } else {
-        window.location.href = 'index.html';
+        window.location.href = 'index.html?t='+ (new Date().getTime());
       }
     });
 
@@ -85,7 +85,7 @@ App = {
 
   resetProfile: async function() {
     await idbKeyval.clear(App.profileStore);
-    location.reload();
+    location.reload(true);
   }
 
   // showKeys: async function() { 
