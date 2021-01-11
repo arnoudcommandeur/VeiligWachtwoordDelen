@@ -5,12 +5,11 @@ App = {
   init: async function() {
     //alert('App.init');
     App.profileStore = initStore();
-
     await App.readProfile();
 
     const btnCreateMessage = document.querySelector('#btnCreateMessage');
     btnCreateMessage.addEventListener('click', async function(event){
-      await App.requestPassword();
+      await App.sendInvite();
     });
 
     return true;
@@ -27,18 +26,18 @@ App = {
 
   },
 
-  requestPassword: async function() {
+  sendInvite: async function() {
 
     profile = await getProfile(App.profileStore);
 
     name = document.getElementById("txtName").value;  
     emailAddress = document.getElementById("txtEmailAddress").value;  
 
-    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/encrypt.html?name=" + encodeURIComponent(name) + "&emailAddress=" + encodeURIComponent(emailAddress) + "&publicKeyReciever=" + encodeURIComponent(profile.publicKey);
+    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/profile.html?type=0";
 
     const shareData = {
       title: 'Veilig Wachtwoord Sturen',
-      text: 'Klik op de link om veilig een wachtwoord te sturen',
+      text: 'Klik op de link om veilig een wachtwoord op te vragen bij ' + name,
       url: url,
     }
 
@@ -53,8 +52,8 @@ App = {
       var mail = "mailto:"
       mail += "?subject=Aanvraag om wachtwoord te delen"
 
-      body = "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
-      body += "Klik op de link om het wachtwoord veilig te delen: "
+      body = "U ontvangt deze email omdat " + name + " aan u een beveiligd wachtwoord wilt sturen. \n\n"
+      body += "Klik op de link om het proces van een veilige wachtwoord uitwisseling te starten: "
       body += url + '\n\n'
       body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 

@@ -2,11 +2,16 @@ App = {
 
   myKey: null,
   profileStore: null,
+  type: null, // 0 direct doorgaan naar encrypt.html
+// encrypt.html?name=Arnoud%20Commandeur&emailAddress=arnoudcommandeur%40hotmail.com&publicKeyReciever=7CpDmZ%2FXABBFYwTpu86Q%2Bftw6k%2F0gZ7tY%2F%2FBzktK02Y%3D
 
   init: async function() {
 
     App.profileStore = initStore();
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    App.type = decodeURIComponent(urlParams.get('type'));
 
     if ((await checkProfile(App.profileStore)) == false) {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
@@ -14,9 +19,13 @@ App = {
     } else {
       document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel';
       document.getElementById("divResetProfile").style.display = '';
-
+      document.getElementById("divPublicKeyMain").style.display = '';
 
       await App.showProfile();
+
+      if (App.type==0) {
+        window.location.href='request.html';
+      }
       //await App.showKeys();
     }
 //console.log('jaja');
@@ -24,7 +33,11 @@ App = {
     const btnSave = document.querySelector('#btnSave');
     btnSave.addEventListener('click', async function(event){
       await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
-      window.location.reload();
+      if (App.type==0) {
+        window.location.href='request';
+      } else {
+        window.location.href = 'index.html';
+      }
     });
 
     const btnResetProfile = document.querySelector('#btnResetProfile');
@@ -43,6 +56,8 @@ App = {
 
     document.getElementById('txtName').value = profile.name;
     document.getElementById('txtEmailAddress').value = profile.emailAddress;
+    document.getElementById('txtPublicKey').value = 'Huidige Public key: ' + profile.publicKey;
+
   },
 
   safeProfile: async function(_name, _emailAddress, _password) { 

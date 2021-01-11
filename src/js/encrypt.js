@@ -55,6 +55,7 @@ App = {
     mlink.setAttribute('href', mail);
     mlink.click();
 
+    location.href = 'index.html'
     return true;
   }
   // end App

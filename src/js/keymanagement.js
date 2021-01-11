@@ -51,11 +51,11 @@ App = {
 
   back: function() {
 
-    const divMenu = document.querySelector('#divMenu')
-    const divShowKeys = document.querySelector('#divShowKey')
+    // const divMenu = document.querySelector('#divMenu')
+    // const divShowKeys = document.querySelector('#divShowKey')
 
-    divMenu.style.display = ''
-    divShowKeys.style.display = 'none';
+    // divMenu.style.display = ''
+    // divShowKeys.style.display = 'none';
 
     location.href = 'index.html';
     return true;

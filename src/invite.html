@@ -48,25 +48,32 @@
       ></button>
       <h1>Veilig Wachtwoord Sturen</h1>
     </div>
-
-
 		<div class="content has-header" style="font-size: 14pt;" align="center">
-      <br>
-			<div align="center">
-				<img src="images/logo.PNG" height="100">
-			</div>
-			<div style="padding: 20pt" >
-				<h1 class="text-strong text-big">Welkom</h1>
-				<p>
-          U heeft een beveiligd wachtwoord ontvangen. 
-          <br><br>
-          Omschrijving: <div id="divDescription"></div>
-          <br>
-          Wachtwoord: <div id="divSecret"></div>
-				</p>
+			<!-- <div align="center">
         <br>
+				<img src="images/logo.PNG" height="100">
+			</div> -->
+			<div style="padding: 20pt" >
+				<p>
+          Voor het versturen van een wachtwoord moet je eerst een verzoek naar de ander sturen. Met het retourbericht dat je hierna ontvangt kun je het wachtwoord vervolgens veilig sturen.
+				</p>
 			</div>
+      <div class="list">
+        <!-- <div class="item"> -->
+          <input id="txtName" type="hidden" placeholder="Je eigen naam">
+        <!-- </div> -->
+        <!-- <div class="item"> -->
+          <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
+        <!-- </div> -->
+        <div class="item">
+          <button id="btnCreateMessage" class="blue-900 radius full">Link delen</button>
+        </div>
+      </div>
+      <div id='link'></div>
+<!-- <button id='share'>Share Public Key</button>
+<div id='result'></div> -->
     </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -77,9 +84,10 @@
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <!-- <script type="text/javascript" src="js/indexeddb.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/decrypt.js?jsversion=3"></script>
+    <script type="text/javascript" src="js/invite.js?jsversion=12"></script>
   </body>
 </html>

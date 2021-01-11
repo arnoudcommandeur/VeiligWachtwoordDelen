@@ -8,7 +8,7 @@
     <title>Veilig Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" type="text/css" href="mobileui/style.css" />
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 
@@ -76,6 +76,14 @@
             <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
           </div>
         </div>
+        <div id="divPublicKeyMain" style="display: none">
+          <div class="item">
+            <div class="item">
+              <input id="txtPublicKey" type="text" placeholder="Public Key" readonly>
+            </div>
+            <!-- <div id="divPublicKey">Test Key</div> -->
+          </div>
+        </div>
         <div class="item">
           <button id="btnSave" class="blue-900 radius full">Opslaan</button>
         </div>
@@ -96,11 +104,11 @@
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    <script type="text/javascript" src="js/indexeddb.js"></script>
+    <!-- <script type="text/javascript" src="js/indexeddb.js"></script> -->
     <script src="js/library/jquery.qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/profile.js?jsversion=12"></script>
+    <script type="text/javascript" src="js/profile.js?jsversion=15"></script>
   </body>
 </html>
