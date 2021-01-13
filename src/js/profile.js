@@ -17,7 +17,7 @@ App = {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
       document.getElementById("divPassword").style.display = '';
     } else {
-      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel123';
+      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel';
       document.getElementById("divResetProfile").style.display = '';
       document.getElementById("divPublicKeyMain").style.display = '';
 
