@@ -10,7 +10,8 @@ App = {
     const btnSyncKey = document.querySelector('#btnSyncKey');
     const btnBack = document.querySelector('#btnBack');
 
-    btnSyncKey.addEventListener('click', async function(event){
+    btnSyncKey.addEventListener('click', async function(event) {
+      document.getElementById("divHeader").style.display = 'none';
       await App.syncKey();
     });
     btnBack.addEventListener('click', async function(event){

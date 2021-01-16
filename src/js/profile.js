@@ -32,18 +32,22 @@ App = {
 
     const btnSave = document.querySelector('#btnSave');
     btnSave.addEventListener('click', async function(event){
-      await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
-      if (App.type==0) {
-        window.location.href='request.html?t='+ (new Date().getTime());
-      } else {
-        window.location.href = 'index.html?t='+ (new Date().getTime());
+      if (await App.validateForm()) {
+        await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
+        if (App.type==0) {
+          window.location.href='request.html?t='+ (new Date().getTime());
+        } else {
+          window.location.href = 'index.html?t='+ (new Date().getTime());
+        }
       }
     });
 
     const btnResetProfile = document.querySelector('#btnResetProfile');
     btnResetProfile.addEventListener('click', async function(event){
-      await App.resetProfile();
-      window.location.reload();
+      if (confirm('Weet u zeker dat u uw profiel wilt wissen en opnieuw wilt instellen?')) {
+        await App.resetProfile();
+        window.location.reload();
+      }
     });
 
     return true;
@@ -86,58 +90,41 @@ App = {
   resetProfile: async function() {
     await idbKeyval.clear(App.profileStore);
     location.reload(true);
+  },
+
+  validateForm: async function() {
+    if (document.getElementById('txtName').value.length == 0) {
+      alert('Er is een fout opgetreden. Het veld Voor- en achternaam is verplicht. Corrigeer de fout en probeer opnieuw.');
+      return false;
+    }
+    if (App.validateEmail(document.getElementById('txtEmailAddress').value) == false) {
+      alert('Er is een fout opgetreden. Het veld Emailadres is onjuist. Corrigeer de fout en probeer opnieuw.');
+      return false;
+    }
+
+    if ((await checkProfile(App.profileStore)) == false) {
+      if (document.getElementById('txtPassword1').value.length == 0 || document.getElementById('txtPassword2').value.length == 0) {
+        alert('Er is een fout opgetreden. U heeft geen wachtwoord ingevoerd. Corrigeer de fout en probeer opnieuw.')
+        return false;
+      }
+
+      if (document.getElementById('txtPassword1').value != document.getElementById('txtPassword2').value) {
+        alert('Er is een fout opgetreden. De ingevulde wachtwoorden zijn niet gelijk. Corrigeer de fout en probeer opnieuw.')
+        return false;
+      }
+    }
+    return true;
+  },
+
+  validateEmail: function(value) {
+    var input = document.createElement('input');
+
+    input.type = 'email';
+    input.required = true;
+    input.value = value;
+
+    return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
   }
-
-  // showKeys: async function() { 
-
-  //   profile = await getProfile(App.profileStore);
-  //   cipher = profile.secretKey;
-  //   publicKey = profile.publicKey;
-
-  //   document.getElementById("divPublicKey").innerHTML = App.publicKey;
-
-  //   url = "http://veiligwachtwoordsturen.web.app/encrypt.html?volledigeNaam=" + encodeURIComponent(profile.name) + "&emailAdres=" + encodeURIComponent(profile.emailAddress) + "&publicKeyReciever=" + encodeURIComponent(profile.publicKey);
-  //   console.log(url);
-
-  //   jQuery('#qrcodeCanvas').qrcode({
-  //       text: url
-  //   })
-
-  //   document.getElementById("divPublicKey").innerHTML = publicKey;
-
-  // },
-
-  // createNewProfile: function() {
-
-  //   // Ww tbv veilig opslaan in IndexedDB van de private key
-  //   let myWachtwoord = window.prompt("Deze site heeft een nieuwe encryptiekey aangemaakt. Geef een wachtwoord op om de key veilig op te slaan op deze computer. Onthoud het wachtwoord goed! U heeft deze nodig om de naar u gestuurde retourberichten te ontcijferen.","");
-
-  //   App.myKey = nacl.box.keyPair();
-
-  //   let openRequest = indexedDB.open("VeiligWachtwoordSturen")
-  //   openRequest.onupgradeneeded = () => {
-  //     console.log("DB update needed")
-  //     openRequest.result.createObjectStore("Profile")
-  //   }
-  //   openRequest.onsuccess = () => {
-  //     console.log("DB opened")
-  //     let store = openRequest.result.transaction("Profile", "readwrite").objectStore("Profile")
-
-  //     cipher = CryptoJS.AES.encrypt(nacl.util.encodeBase64(App.myKey.secretKey), myWachtwoord).toString();
-  //     // plainBytes = CryptoJS.AES.decrypt(cipher, myWachtwoord)
-  //     // plain = plainBytes.toString(CryptoJS.enc.Utf8);
-
-  //     console.log(nacl.util.encodeBase64(App.myKey.secretKey));
-  //     console.log(cipher);
-  //     console.log(App.myKey.publicKey);
-  //     App.publicKey = nacl.util.encodeBase64(App.myKey.publicKey);
-
-  //     txtNaam = document.getElementById("txtNaam").value
-  //     txtEmailAdres = document.getElementById("txtEmailAdres").value
-
-  //     store.put({secretkey: cipher, publicKey: App.publicKey, naam: txtNaam, emailadres: txtEmailAdres}, 0) //  Aangepaste versie, nu met encryptie toegepast.
-  //   }
-  // },
 
 };
 

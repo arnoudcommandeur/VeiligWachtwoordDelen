@@ -53,15 +53,12 @@
       <h1>Veilig Wachtwoord Sturen</h1>
     </div>
 		<div class="content has-header" style="font-size: 14pt;" align="center">
-			<div align="center">
-        <br>
-				<img src="images/logo.PNG" height="100">
-			</div>
+      <br>
 			<div style="padding: 20pt" >
-
-				<p>
-          Kopieer jouw profiel naar een andere computer zodat je ook op die computer de naar jou gestuurde wachtwoorden kunt gebruiken. Let erop dat niemand mee kan kijken met deze QR Code!
-				</p>
+        <div id="divHeader">
+          Kopieer jouw profiel naar een andere computer. Klik op Toon QR en scan de code.
+        </div>
+        Let erop dat niemand mee kan kijken met deze QR Code om jouw profiel te beschermen!
 			</div>
 
       <div id="divMenu" class="list">
@@ -75,7 +72,7 @@
           <button id="btnImportBackupKey" class="blue-900 radius full">Importeer backup key</button>
           <br> -->
           <br>
-          <button id="btnSyncKey" class="blue-900 radius full">Synchroniseer key</button>
+          <button id="btnSyncKey" class="blue-900 radius full">Toon QR</button>
           <br>
         </div>
       </div>
@@ -84,6 +81,8 @@
           <div id="qrcodeCanvas" align="center"></div>
           Public key: <div id='divPublicKey'></div>
         </div>
+        <br>
+        <br>
         <button id="btnBack" class="blue-900 radius full">Terug</button>
       </div>
     </div>
