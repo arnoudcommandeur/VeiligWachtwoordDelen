@@ -43,7 +43,7 @@ App = {
     mail += "?subject=Versleuteld bericht"
 
     body = "Hallo " + name + ", \n\n"
-    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + description + ". \n\n"
+    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
     //body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
     body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 

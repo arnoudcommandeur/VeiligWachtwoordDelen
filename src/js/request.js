@@ -54,7 +54,7 @@ App = {
       mail += "?subject=Aanvraag om wachtwoord te delen"
 
       body = "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
-      body += "Klik op de link om het wachtwoord veilig te delen: "
+      body += "Klik op de link om op een veilige manier het wachtwoord terugsturen: "
       body += url
       body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
       body += "\n\nMet een vriendelijke groet,";

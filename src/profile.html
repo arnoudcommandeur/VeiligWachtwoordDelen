@@ -9,7 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <title>Veilig Wachtwoord Sturen</title>
+    <title>Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
@@ -50,7 +50,7 @@
         name="button"
         onclick="openMenu('myMenu')"
       ></button>
-      <h1>Veilig Wachtwoord Sturen</h1>
+      <h1>Wachtwoord Sturen</h1>
     </div>
 
 
@@ -64,17 +64,17 @@
 
       <div class="list">
         <div class="item">
-          <input id="txtName" type="text" placeholder="Voor- en achternaam">
+          <input id="txtName" type="text" placeholder="Voor- en achternaam" maxlength="50">
         </div>
         <div class="item">
-          <input id="txtEmailAddress" type="text" placeholder="Emailadres">
+          <input id="txtEmailAddress" type="text" placeholder="Emailadres" maxlength="100">
         </div> 
         <div id="divPassword" style="display: none">
           <div class="item">
-            <input id="txtPassword1" type="text" placeholder="Wachtwoord">
+            <input id="txtPassword1" type="text" placeholder="Wachtwoord" maxlength="50">
           </div>
           <div class="item">
-            <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)">
+            <input id="txtPassword2" type="text" placeholder="Wachtwoord (herhaling)" maxlength="50">
           </div>
         </div>
         <div id="divPublicKeyMain" style="display: none">

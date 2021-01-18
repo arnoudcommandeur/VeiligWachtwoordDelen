@@ -50,10 +50,10 @@ App = {
       console.log(err);
 
       var mail = "mailto:"
-      mail += "?subject=Aanvraag om wachtwoord te delen"
+      mail += "?subject=Aanvraag om public key te delen"
 
-      body = "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
-      body += "Klik op de link om het proces van een veilige wachtwoord uitwisseling te starten: "
+      body = "U ontvangt deze email van " + name + " omdat hij u een wachtwoord wilt sturen. \n\n"
+      body += "Voordat hij het wachtwoord kan sturen, moet hij eerst de Public Key van u ontvangen. Klik op link om een profiel aan te maken en de Public Key terug te sturen: "
       body += url
       body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
       body += "\n\nMet een vriendelijke groet,";

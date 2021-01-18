@@ -10,7 +10,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <title>Veilig Wachtwoord Sturen</title>
+    <title>Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
@@ -51,12 +51,12 @@
         name="button"
         onclick="openMenu('myMenu')"
       ></button>
-      <h1>Veilig Wachtwoord Sturen</h1>
+      <h1>Wachtwoord Sturen</h1>
     </div>
 		<div class="content has-header" style="font-size: 14pt;" align="center">
       <br>
-			<div style="padding: 20pt" >
-        Voor het versturen van een wachtwoord moet je eerst een verzoek naar de ander sturen. Met het retourbericht dat je hierna ontvangt kun je het wachtwoord vervolgens veilig sturen.
+			<div style="padding: 20pt">
+        Voordat je een wachtwoord kunt sturen moet je eerst de public key van de ander hebben. Klik op de knop hieronder om de public key op te vragen.
 			</div>
       <div class="list">
         <!-- <div class="item"> -->
@@ -66,15 +66,11 @@
           <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
         <!-- </div> -->
         <div class="item">
-          <button id="btnCreateMessage" class="blue-900 radius full">Link delen</button>
+          <button id="btnCreateMessage" class="blue-900 radius full">Public key opvragen</button>
         </div>
       </div>
       <div id='link'></div>
-<!-- <button id='share'>Share Public Key</button>
-<div id='result'></div> -->
     </div>
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

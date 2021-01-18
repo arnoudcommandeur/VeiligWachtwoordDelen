@@ -9,7 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <title>Veilig Wachtwoord Sturen</title>
+    <title>Wachtwoord Sturen</title>
 
     <!-- Bootstrap -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
@@ -50,22 +50,22 @@
         name="button"
         onclick="openMenu('myMenu')"
       ></button>
-      <h1>Veilig Wachtwoord Sturen</h1>
+      <h1>Wachtwoord Sturen</h1>
     </div>
 
 
 		<div class="content has-header" style="font-size: 14pt;" align="center">
       <br>
 			<div style="padding: 20pt" >
-        Voor het veilig delen van het wachtwoord vul je hieronder de omschrijving en het wachtwoord in. Klik vervolgens op Creeer email en verstuur.
+        Vul de gegevens hieronder in en klik op de knop Wachtwoord versturen.
         <br>
 			</div>
       <div class="list">
         <div class="item">
-          <input id="txtDescription" type="text" placeholder="Korte omschrijving wachtwoord (zonder technische details)">
+          <input id="txtDescription" type="text" placeholder="Korte omschrijving" maxlength="75">
         </div>
         <div class="item">
-          <input id="txtSecret" type="text" placeholder="Omschrijving: gebruikersnaam / wachtwoord / server">
+          <input id="txtSecret" type="text" placeholder="Gebruikersnaam / wachtwoord / server" maxlength="75">
         </div>
         <div class="item">
           <button id="btnSendMessage" class="blue-900 radius full">Wachtwoord versturen</button>
@@ -82,6 +82,6 @@
     <script type="text/javascript" src="js/library/nacl-util.js"></script>
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
 
-    <script type="text/javascript" src="js/encrypt.js?jsversion=2"></script>
+    <script type="text/javascript" src="js/encrypt.js?jsversion=3"></script>
   </body>
 </html>
