@@ -14,6 +14,9 @@ App = {
 
   decrypt: async function() {
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
     profile = await getProfile(App.profileStore);
     secretKeyCipher = profile.secretKey;
 
@@ -21,19 +24,18 @@ App = {
     plainBytes = CryptoJS.AES.decrypt(secretKeyCipher, myPassword)
     secretKey = plainBytes.toString(CryptoJS.enc.Utf8);
     App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(secretKey))
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
-    description = decodeURIComponent(urlParams.get('description'));
-    nonce = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('nonce')));  
     publicKeySender = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('publicKeySender')));  
-    cipher = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('cipher')));
 
-    plaintext = nacl.box.open(cipher, nonce, publicKeySender, App.myKey.secretKey);
+    nonceD = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('nonceD')));  
+    nonceP = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('nonceP')));  
+    cipherD = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('cipherD')));
+    cipherP = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('cipherP')));
 
-    document.getElementById("divDescription").innerHTML = description;
-    document.getElementById("divSecret").innerHTML = nacl.util.encodeUTF8(plaintext);
+    description = nacl.box.open(cipherD, nonceD, publicKeySender, App.myKey.secretKey);
+    secret = nacl.box.open(cipherP, nonceP, publicKeySender, App.myKey.secretKey);
+
+    document.getElementById("divDescription").innerHTML = nacl.util.encodeUTF8(description);
+    document.getElementById("divSecret").innerHTML = nacl.util.encodeUTF8(secret);
 
   },
 

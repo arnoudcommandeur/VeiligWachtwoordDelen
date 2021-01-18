@@ -20,7 +20,8 @@ App = {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    nonce = nacl.randomBytes(nacl.box.nonceLength);  
+    nonceD = nacl.randomBytes(nacl.box.nonceLength);  
+    nonceP = nacl.randomBytes(nacl.box.nonceLength);  
 
     name = urlParams.get('name'); 
     emailAddress = urlParams.get('emailAddress');  
@@ -35,7 +36,8 @@ App = {
         return;
     }
 
-    cipher = nacl.box(nacl.util.decodeUTF8(secret), nonce, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
+    cipherD = nacl.box(nacl.util.decodeUTF8(description), nonceD, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
+    cipherP = nacl.box(nacl.util.decodeUTF8(secret), nonceP, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
 
     var mail = "mailto:" + emailAddress
     mail += "?subject=Versleuteld bericht"
@@ -44,7 +46,13 @@ App = {
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord tbv " + description + ". \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
     //body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
-    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) + "&t="+ (new Date().getTime());
+    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 
+    body += "/decrypt.html?nonceD=" + encodeURIComponent(nacl.util.encodeBase64(nonceD)) 
+    body += "&nonceP=" +  encodeURIComponent(nacl.util.encodeBase64(nonceP)) 
+    body += "&cipherD=" + encodeURIComponent(nacl.util.encodeBase64(cipherD)) 
+    body += "&cipherP=" + encodeURIComponent(nacl.util.encodeBase64(cipherP)) 
+    body += "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) 
+    //Body += "&t="+ (new Date().getTime());
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
