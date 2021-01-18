@@ -56,13 +56,21 @@
 
 		<div class="content has-header" style="font-size: 14pt;" align="center">
       <br>
-			<div style="padding: 20pt" >
-				<h1 class="text-strong text-big">Welkom</h1>
-          U heeft een beveiligd wachtwoord ontvangen. 
+			<div id="divStep1" style="padding: 20pt" >
+          U heeft een beveiligd wachtwoord ontvangen. Klik op de knop en vul uw wachtwoord in om het bericht te lezen. Let op: laat niemand meekijken!
           <br><br>
-          Omschrijving: <div id="divDescription"></div>
+          <div class="item">
+            <button id="btnDecrypt" class="blue-900 radius full">Bericht ontcijferen</button>
+          </div>
+        <br>
+			</div>
+			<div id="divStep2" style="padding: 20pt; display:none" >
           <br>
-          Wachtwoord: <div id="divSecret"></div>
+          Omschrijving: <b><div id="divDescription"></div></b>
+          <br>
+          Bericht: <b><div id="divSecret"></div></b>
+          <br><br>
+          Klik op de dikgedrukte tekst om deze te kopieren.
         <br>
 			</div>
     </div>
@@ -79,6 +87,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/decrypt.js?jsversion=3"></script>
+    <script type="text/javascript" src="js/decrypt.js?jsversion=6"></script>
   </body>
 </html>
