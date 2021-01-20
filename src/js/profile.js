@@ -17,7 +17,7 @@ App = {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
       document.getElementById("divPassword").style.display = '';
     } else {
-      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel';
+      document.getElementById("divHeader").innerHTML = 'Wijzig op deze pagina je profiel. Via de optie Key management in het menu kun je je profiel naar een andere computer kopieren.';
       document.getElementById("divResetProfile").style.display = '';
       document.getElementById("divPublicKeyMain").style.display = '';
 
@@ -44,7 +44,7 @@ App = {
 
     const btnResetProfile = document.querySelector('#btnResetProfile');
     btnResetProfile.addEventListener('click', async function(event){
-      if (confirm('Weet u zeker dat u uw profiel wilt wissen en opnieuw wilt instellen?')) {
+      if (confirm('Weet je zeker dat je jouw profiel wilt wissen en opnieuw wilt instellen? Hiermee kun je oude berichten niet meer lezen. Contactpersonen die jouw huidige public key hebben moet je de nieuwe key sturen.')) {
         await App.resetProfile();
         window.location.reload();
       }

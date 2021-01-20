@@ -15,21 +15,21 @@ App = {
       if (await checkProfile(App.profileStore)) {
         window.location.href = 'invite.html?t='+ (new Date().getTime());
       } else {
-        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken.');
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       }
     });
     btnWachtwoordOpvragen.addEventListener('click', async function(event){
       if (await checkProfile(App.profileStore)) {
         window.location.href = 'request.html?t='+ (new Date().getTime());
       } else {
-        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kunt u een bestaand profiel via een QR scanner toevoegen.');
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       }
     });
     btnKeyManagement.addEventListener('click', async function(event){
       if (await checkProfile(App.profileStore)) {
         window.location.href = 'keymanagement.html?t='+ (new Date().getTime());
       } else {
-        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kunt u een bestaand profiel via een QR scanner toevoegen.');
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       }
     });
 

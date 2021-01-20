@@ -10,7 +10,18 @@ App = {
     const btnDecrypt = document.querySelector('#btnDecrypt');
 
     btnDecrypt.addEventListener('click', async function(event){
-      await App.decrypt();
+      if (await checkProfile(App.profileStore)) {
+        await App.decrypt();
+      } else {
+        alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
+      }
+    });
+
+    const btnClose = document.querySelector('#btnClose');
+    btnClose.addEventListener('click', async function(event){
+      document.getElementById("divDescription").innerHTML = '';
+      document.getElementById("divSecret").innerHTML = '';
+      window.location.href = 'index.html'
     });
 
     return true;
