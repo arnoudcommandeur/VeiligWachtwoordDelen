@@ -104,7 +104,7 @@ App = {
 
     if ((await checkProfile(App.profileStore)) == false) {
       if (document.getElementById('txtPassword1').value.length == 0 || document.getElementById('txtPassword2').value.length == 0) {
-        alert('Er is een fout opgetreden. U heeft geen wachtwoord ingevoerd. Corrigeer de fout en probeer opnieuw.')
+        alert('Er is een fout opgetreden. U heeft de wachtwoord velden niet juist ingevoerd. Corrigeer de fout en probeer opnieuw.')
         return false;
       }
 
@@ -112,6 +112,17 @@ App = {
         alert('Er is een fout opgetreden. De ingevulde wachtwoorden zijn niet gelijk. Corrigeer de fout en probeer opnieuw.')
         return false;
       }
+
+      if (document.getElementById('txtPassword1').value.length < 8) {
+        alert('Er is een fout opgetreden. Het ingevulde wachtwoord moet uit minimaal 8 posities bestaan. Corrigeer de fout en probeer opnieuw.')
+        return false;
+      }
+
+      if (!confirm('Heeft u een wachtwoord gekozen dat voldoet aan de reguliere wachtwoordeisen? Denk hierbij aan het gebruik van hoofdletters, kleine letters, cijfers en leestekens.')) {
+
+        return false;
+      }
+
     }
     return true;
   },

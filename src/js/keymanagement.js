@@ -11,8 +11,9 @@ App = {
     const btnBack = document.querySelector('#btnBack');
 
     btnSyncKey.addEventListener('click', async function(event) {
-      document.getElementById("divHeader").style.display = 'none';
-      await App.syncKey();
+      if (await App.syncKey()) {
+        document.getElementById("divHeader").style.display = 'none';
+      }
     });
     btnBack.addEventListener('click', async function(event){
       App.back();
@@ -27,6 +28,20 @@ App = {
 
     if (await checkProfile(App.profileStore)) {
       //window.location.href = 'request.html';
+      profile = await getProfile(App.profileStore);
+      secretKeyCipher = profile.secretKey;
+
+      myPassword = window.prompt("Geef het wachtwoord om de persoonlijke encryptiekey te openen","");
+      plainBytes = CryptoJS.AES.decrypt(secretKeyCipher, myPassword)
+      secretKey = plainBytes.toString(CryptoJS.enc.Utf8);
+
+      try {
+        App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(secretKey))
+      } catch (error) {
+        alert('Onjuist wachtwoord. Probeer opnieuw.');
+        return false;
+      }
+
     } else {
       alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       return false;
