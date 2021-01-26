@@ -57,7 +57,7 @@
       <br>
 			<div style="padding: 20pt" >
 				<div id="divHeader">
-          Selecteer de contactpersoon waarnaar je een wachtwoord wilt sturen
+          Selecteer de contactpersoon die je wilt bewerken
 				</div>
 			</div>
 
@@ -82,6 +82,9 @@
       <div id="divAddressbookEdit" style="display: none">
         <div class="list">
           <div class="item">
+            <input id="txtId" type="text" placeholder="Id" maxlength="50" hidden>
+          </div>
+          <div class="item">
             <input id="txtName" type="text" placeholder="Voor- en achternaam" maxlength="50">
           </div>
           <div class="item">
@@ -89,6 +92,9 @@
           </div> 
           <div class="item">
             <input id="txtCompany" type="text" placeholder="Bedrijf" maxlength="100">
+          </div> 
+          <div class="item">
+            <input id="txtPublicKey" type="text" placeholder="Public Key" maxlength="100">
           </div> 
           <div class="item">
             <button id="btnSave" class="blue-900 radius full">Opslaan</button>
@@ -114,6 +120,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/addressbookmanagement.js?jsversion=1"></script>
+    <script type="text/javascript" src="js/addressbookmanagement.js?jsversion=2"></script>
   </body>
 </html>

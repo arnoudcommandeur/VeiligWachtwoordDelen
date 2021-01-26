@@ -54,7 +54,7 @@ App = {
     divShowKey.style.display = '';
 
 //    var url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/importkeys.html?encryptedSecretKey=123456';
-    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/syncKey.html?name=" + encodeURIComponent(profile.name) + "&emailAddress=" + encodeURIComponent(profile.emailAddress) + "&publicKey=" + encodeURIComponent(profile.publicKey)  + "&secretKey=" + encodeURIComponent(profile.secretKey);
+    url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/syncKey.html?name=" + encodeURIComponent(profile.name) + "&emailAddress=" + encodeURIComponent(profile.emailAddress) + "&publicKey=" + encodeURIComponent(profile.publicKey) + "&secretKey=" + encodeURIComponent(profile.secretKey) + "&company=" + encodeURIComponent(profile.company) + "&type=0&t="+ (new Date().getTime());
     console.log(url);
 
     jQuery('#qrcodeCanvas').qrcode({

@@ -33,7 +33,7 @@ App = {
     const btnSave = document.querySelector('#btnSave');
     btnSave.addEventListener('click', async function(event){
       if (await App.validateForm()) {
-        await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value);
+        await App.safeProfile(document.getElementById('txtName').value, document.getElementById('txtEmailAddress').value, document.getElementById('txtPassword1').value, document.getElementById('txtCompany').value);
         if (App.type==0) {
           window.location.href='request.html?t='+ (new Date().getTime());
         } else {
@@ -59,12 +59,13 @@ App = {
     publicKey = profile.publicKey;
 
     document.getElementById('txtName').value = profile.name;
+    document.getElementById('txtCompany').value = profile.company;
     document.getElementById('txtEmailAddress').value = profile.emailAddress;
     document.getElementById('txtPublicKey').value = 'Huidige Public key: ' + profile.publicKey;
 
   },
 
-  safeProfile: async function(_name, _emailAddress, _password) { 
+  safeProfile: async function(_name, _emailAddress, _password, _company) { 
 
     // Lees bestaande cipher, publickey uit
     if ((await checkProfile(App.profileStore)) == false) {
@@ -77,13 +78,13 @@ App = {
 
       console.log(cipher);
 
-      await saveProfile(App.profileStore, 0, cipher, publicKey, _name, _emailAddress);
+      await saveProfile(App.profileStore, 0, cipher, publicKey, _name, _emailAddress, _company);
     } else {
       profile = await getProfile(App.profileStore);
       cipher = profile.secretKey;
       publicKey = profile.publicKey;
 
-      await saveProfile(App.profileStore, 0, cipher, publicKey, _name, _emailAddress);
+      await saveProfile(App.profileStore, 0, cipher, publicKey, _name, _emailAddress, _company);
     }    
   },
 
@@ -99,6 +100,10 @@ App = {
     }
     if (App.validateEmail(document.getElementById('txtEmailAddress').value) == false) {
       alert('Er is een fout opgetreden. Het veld Emailadres is onjuist. Corrigeer de fout en probeer opnieuw.');
+      return false;
+    }
+    if (document.getElementById('txtCompany').value.length == 0) {
+      alert('Er is een fout opgetreden. Het veld Bedrijf is verplicht. Corrigeer de fout en probeer opnieuw.');
       return false;
     }
 

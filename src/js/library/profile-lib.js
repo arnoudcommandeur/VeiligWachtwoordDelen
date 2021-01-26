@@ -36,9 +36,9 @@ async function getProfile(_profileStore) {
     }
 };
 
-async function saveProfile(_profileStore, _index, _secretKey, _publicKey, _name, _emailAddress) {
+async function saveProfile(_profileStore, _index, _secretKey, _publicKey, _name, _emailAddress, _company) {
 
-    value = await idbKeyval.set(0, {secretKey: _secretKey, publicKey: _publicKey, name: _name, emailAddress: _emailAddress}, _profileStore);
+    value = await idbKeyval.set(0, {secretKey: _secretKey, publicKey: _publicKey, name: _name, emailAddress: _emailAddress, company: _company}, _profileStore);
 
     if (value === undefined) {
         return false;
