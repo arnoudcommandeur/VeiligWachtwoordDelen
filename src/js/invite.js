@@ -11,6 +11,10 @@ App = {
     btnCreateMessage.addEventListener('click', async function(event){
       await App.sendInvite();
     });
+    const btnAddressbook = document.querySelector('#btnAddressbook');
+    btnAddressbook.addEventListener('click', async function(event){
+      window.location.href = 'addressbook.html'
+    });
 
     return true;
   },

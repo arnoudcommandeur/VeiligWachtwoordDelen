@@ -3,6 +3,11 @@ function initStore() {
     return value;
 }
 
+function initAddressbook() {
+    value = new idbKeyval.Store('VeiligWachtwoordSturenAddressbook', 'Addressbook');
+    return value;
+}
+
 async function checkProfile (_profileStore) {
 
     value = await idbKeyval.get(0, _profileStore);
@@ -47,4 +52,16 @@ async function resetProfile(_profileStore) {
 
     await idbKeyval.clear(_profileStore);
 
+};
+
+async function addAddressbookItem(_addressbookStore, _index, _publicKey, _name, _emailAddress, _company) {
+
+    value = await idbKeyval.set(_index, {publicKey: _publicKey, name: _name, emailAddress: _emailAddress, company: _company}, _addressbookStore);
+
+    if (value === undefined) {
+        return false;
+    }
+    else {
+        return value;
+    }
 };

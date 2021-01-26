@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
@@ -53,29 +52,54 @@
       ></button>
       <h1>Wachtwoord Sturen</h1>
     </div>
-		<div class="content has-header" style="font-size: 14pt;" align="center">
+
+		<div class="content has-header" id="divMain" style="font-size: 14pt;" align="center">
       <br>
-			<div style="padding: 20pt">
-        Voordat je een wachtwoord kunt sturen moet je eerst de public key van de ander hebben. 
-        <br><br>
-        Klik op de knop hieronder om de public key op te vragen.
+			<div style="padding: 20pt" >
+				<div id="divHeader">
+          Selecteer de contactpersoon waarnaar je een wachtwoord wilt sturen
+				</div>
 			</div>
-      <div class="list">
-        <!-- <div class="item"> -->
-          <input id="txtName" type="hidden" placeholder="Je eigen naam">
-        <!-- </div> -->
-        <!-- <div class="item"> -->
-          <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
-        <!-- </div> -->
-        <div class="item">
-          <button id="btnCreateMessage" class="blue-900 radius full">Public key opvragen</button>
+
+      <div id="divAddressbookList">
+        <div class="list">
+          <div id="addressbookRow">
+            <!-- ADDRESSES LOAD HERE -->
+          </div>
         </div>
-        <div class="item">
-          <button id="btnAddressbook" class="blue-900 radius full">Toon adresboek</button>
+
+        <div id="addressbookRowTemplate" style="display: none;">
+          <div class="item">
+            <h2 class="name"></h2>
+            <p class="company text-grey-500"></p>
+            <p class="emailAddress text-grey-500"></p>
+            <p class="publicKey text-grey-500"></p>
+            <button class="btn blue-900 btn-edit" type="button" data-id="0">Wijzig</button>
+          </div>
         </div>
       </div>
-      <div id='link'></div>
+
+      <div id="divAddressbookEdit" style="display: none">
+        <div class="list">
+          <div class="item">
+            <input id="txtName" type="text" placeholder="Voor- en achternaam" maxlength="50">
+          </div>
+          <div class="item">
+            <input id="txtEmailAddress" type="text" placeholder="Emailadres" maxlength="100">
+          </div> 
+          <div class="item">
+            <input id="txtCompany" type="text" placeholder="Bedrijf" maxlength="100">
+          </div> 
+          <div class="item">
+            <button id="btnSave" class="blue-900 radius full">Opslaan</button>
+          </div>
+          <div class="item">
+            <button id="btnBack" class="blue-900 radius full">Terug</button>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -86,9 +110,10 @@
     <script type="text/javascript" src="js/library/nacl-helpers.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <!-- <script type="text/javascript" src="js/indexeddb.js"></script> -->
+    <script src="js/library/jquery.qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/invite.js?jsversion=13"></script>
+    <script type="text/javascript" src="js/addressbookmanagement.js?jsversion=1"></script>
   </body>
 </html>
