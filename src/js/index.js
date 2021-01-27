@@ -9,7 +9,7 @@ App = {
 
     const btnWachtwoordSturen = document.querySelector('#btnWachtwoordSturen');
     const btnWachtwoordOpvragen = document.querySelector('#btnWachtwoordOpvragen');
-    const btnKeyManagement = document.querySelector('#btnKeyManagement');
+    const btnShareProfile = document.querySelector('#btnShareProfile');
 
     btnWachtwoordSturen.addEventListener('click', async function(event){
       if (await checkProfile(App.profileStore)) {
@@ -25,9 +25,9 @@ App = {
         alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       }
     });
-    btnKeyManagement.addEventListener('click', async function(event){
+    btnShareProfile.addEventListener('click', async function(event){
       if (await checkProfile(App.profileStore)) {
-        window.location.href = 'keymanagement.html?t='+ (new Date().getTime());
+        window.location.href = 'profile.html?type=1&t='+ (new Date().getTime());
       } else {
         alert('Er is nog geen profiel aanwezig. Ga eerst in het menu naar Mijn profiel om een profiel aan te maken. Ook kun je een bestaand profiel via een QR scanner toevoegen.');
       }

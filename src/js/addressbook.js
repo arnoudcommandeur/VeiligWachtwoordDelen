@@ -58,8 +58,8 @@ App = {
     console.log(event.target);
 
     var id = $(event.target).data('id');
-    var emailAddress = $(event.target).data('emailaddress');
-    var publicKey = $(event.target).data('publickey');
+    var emailAddress = encodeURIComponent($(event.target).data('emailaddress'));
+    var publicKey = encodeURIComponent($(event.target).data('publickey'));
 
     url = 'encrypt.html?name=' + name + '&emailAddress=' + emailAddress + '&publicKeyReciever=' + publicKey + '&t=1611668211185';
     console.log(url);

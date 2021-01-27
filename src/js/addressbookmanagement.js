@@ -24,6 +24,15 @@ App = {
     btnSave.addEventListener('click', async function(event){
       await App.handleSave();
     });
+    const btnDelete = document.querySelector('#btnDelete');
+    btnDelete.addEventListener('click', async function(event){
+      await App.handleDelete();
+    });
+    if (App.type==0) {
+      // Toon de nieuwe gegevens
+      App.handleShowNewItem();
+      return true;
+    }
 
     if ((await checkProfile(App.profileStore)) == false) {
       alert('Er is nog geen profiel aanwezig, maak deze eerst aan via het menu Profiel');
@@ -33,6 +42,15 @@ App = {
     }
 
     return true;
+  },
+
+  handleDelete: async function(event) {
+
+    _id = document.getElementById("txtId").value;
+    deleteAddressbookItem(App.addressbookStore, _id);
+
+    location.reload();
+
   },
 
   showAddressbook: async function() {
@@ -78,9 +96,32 @@ App = {
 
     const divAddressbookList = document.querySelector('#divAddressbookList')
     const divAddressbookEdit = document.querySelector('#divAddressbookEdit')
+    const divDeleteButton = document.querySelector('#divDeleteButton')
 
     divAddressbookList.style.display = 'none'
     divAddressbookEdit.style.display = '';
+    divDeleteButton.style.display = '';
+  },
+
+  handleShowNewItem: function() {
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    document.getElementById("divHeader").innerHTML = 'Voeg een nieuw item toe aan je adresboek. Controleer de gegeven en pas eventueel de gegevens aan en klik op Opslaan';
+
+    document.getElementById("txtName").value = decodeURIComponent(urlParams.get('name'));
+    document.getElementById("txtEmailAddress").value = decodeURIComponent(urlParams.get('emailAddress'));
+    document.getElementById("txtCompany").value = decodeURIComponent(urlParams.get('company'));
+    document.getElementById("txtPublicKey").value = decodeURIComponent(urlParams.get('publicKey'));
+
+    const divAddressbookList = document.querySelector('#divAddressbookList')
+    const divAddressbookEdit = document.querySelector('#divAddressbookEdit')
+
+    divAddressbookList.style.display = 'none'
+    divAddressbookEdit.style.display = '';
+    document.getElementById('txtPublicKey').readOnly = true;
+
   },
 
   handleBack: function() {
@@ -94,15 +135,15 @@ App = {
 
   handleSave: async function() {
 
-    _index = document.getElementById("txtId").value
+    //_index = document.getElementById("txtId").value
     _publicKey = document.getElementById("txtPublicKey").value
     _name = document.getElementById("txtName").value
     _emailAddress = document.getElementById("txtEmailAddress").value
     _company = document.getElementById("txtCompany").value
 
-    await addAddressbookItem(App.addressbookStore, _index, _publicKey, _name, _emailAddress, _company)
+    await addAddressbookItem(App.addressbookStore, _publicKey, _publicKey, _name, _emailAddress, _company)
 
-    window.location.reload(true);
+    window.location.href='index.html?t=' + (new Date().getTime());
 
     // const divAddressbookList = document.querySelector('#divAddressbookList')
     // const divAddressbookEdit = document.querySelector('#divAddressbookEdit')

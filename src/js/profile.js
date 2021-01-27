@@ -3,6 +3,7 @@ App = {
   myKey: null,
   profileStore: null,
   type: null, // 0 direct doorgaan naar encrypt.html
+  url: null,
 // encrypt.html?name=Arnoud%20Commandeur&emailAddress=arnoudcommandeur%40hotmail.com&publicKeyReciever=7CpDmZ%2FXABBFYwTpu86Q%2Bftw6k%2F0gZ7tY%2F%2FBzktK02Y%3D
 
   init: async function() {
@@ -12,6 +13,11 @@ App = {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     App.type = decodeURIComponent(urlParams.get('type'));
+
+    if ((await checkProfile(App.profileStore)) == false && App.type==1) {
+      alert('Je kunt je profiel nog niet delen zolang je nog geen profiel aangemaakt hebt. Maak eerst je profiel aan en probeer dan opnieuw.');
+      return false;
+    }
 
     if ((await checkProfile(App.profileStore)) == false) {
       //alert('Vul je naam en emailadres in en klik op Opslaan op een nieuw profiel aan te maken.');
@@ -23,6 +29,7 @@ App = {
 
       await App.showProfile();
 
+      // Ga verder naar Wachtwoord opvragen
       if (App.type==0) {
         window.location.href='request.html?t='+ (new Date().getTime());
       }
@@ -50,7 +57,78 @@ App = {
       }
     });
 
+    const btnShareProfile = document.querySelector('#btnShareProfile');
+    btnShareProfile.addEventListener('click', async function(event){
+      await App.handleShareProfile();
+    });
+
+    // Share Profile
+    if (App.type==1) {
+      document.getElementById("divHeader").innerHTML = 'Toon onderstaande QR code of klik op de knop Profiel delen zodat de persoon jou een wachtwoord kan sturen.';
+
+      // Set input buttons readonly
+      document.getElementById('txtName').readOnly  = true;
+      document.getElementById('txtCompany').readOnly  = true;
+      document.getElementById('txtEmailAddress').readOnly  = true;
+
+      // Remove Opslaan en Reset profile buttons
+      const btnSave = document.querySelector('#btnSave');
+      btnSave.style.display = 'none';
+      const btnResetProfile = document.querySelector('#btnResetProfile');
+      btnResetProfile.style.display = 'none';
+
+      document.getElementById("divShowQRCode").style.display = '';
+
+      // Show QRCode
+      name = encodeURIComponent(document.getElementById('txtName').value);
+      emailAddress = encodeURIComponent(document.getElementById('txtEmailAddress').value);
+      company = encodeURIComponent(document.getElementById('txtCompany').value);
+      publicKey = encodeURIComponent(document.getElementById('txtPublicKey').value);
+
+      App.url = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/addressbookmanagement.html?type=0&name=" + name + "&emailAddress=" + emailAddress + "&publicKey=" + publicKey + "&company=" + company + "&t="+ (new Date().getTime());
+      console.log(App.url);
+      jQuery('#qrcodeCanvas').qrcode({
+          text: App.url
+      })
+    }
+
     return true;
+  },
+
+  handleShareProfile: async function() {
+
+    const shareData = {
+      title: 'Klik op de link om mijn publieke profiel te importeren',
+      text: 'Nadat je mijn profiel geimporteerd hebt, kun jij aan mij veilig een wachtwoord sturen',
+      url: App.url,
+    }
+
+    console.log(App.url);
+
+    try {
+      await navigator.share(shareData)
+      console.log('Link shared successfully')
+    } catch(err) {
+      console.log(err);
+
+      var mail = "mailto:"
+      mail += "?subject=Aanvraag om publieke profiel te delen"
+
+      body = "Hallo, je ontvangt deze email omdat iemand met jou een wachtwoord wilt uitwisselen. Hiervoor . \n\n"
+      body += "Klik op de link om op een veilige manier het wachtwoord terugsturen: "
+      body += App.url
+      body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
+      body += "\n\nMet een vriendelijke groet,";
+      body += "\n" + name;
+
+      mail += "&body=" + encodeURIComponent(body); 
+
+      var mlink = document.createElement('a');
+      mlink.setAttribute('href', mail);
+      mlink.click();
+
+    }
+    location.href = 'index.html?t='+ (new Date().getTime());
   },
 
   showProfile: async function() {
@@ -61,7 +139,7 @@ App = {
     document.getElementById('txtName').value = profile.name;
     document.getElementById('txtCompany').value = profile.company;
     document.getElementById('txtEmailAddress').value = profile.emailAddress;
-    document.getElementById('txtPublicKey').value = 'Huidige Public key: ' + profile.publicKey;
+    document.getElementById('txtPublicKey').value = profile.publicKey;
 
   },
 
