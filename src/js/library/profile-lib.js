@@ -68,7 +68,7 @@ async function addAddressbookItem(_addressbookStore, _index, _publicKey, _name, 
 
 async function deleteAddressbookItem(_addressbookStore, _index) {
 
-    alert(_index);
+    alert('De volgende index wordt verwijderd:' + _index);
 
     value = await idbKeyval.del(_index, _addressbookStore);
 
