@@ -62,6 +62,11 @@ App = {
       await App.handleShareProfile();
     });
 
+    const btnKeyManagement = document.querySelector('#btnKeyManagement');
+    btnKeyManagement.addEventListener('click', async function(event){
+        window.location.href='keymanagement.html?t='+ (new Date().getTime());
+    });
+
     // Share Profile
     if (App.type==1) {
       document.getElementById("divHeader").innerHTML = 'Toon onderstaande QR code of klik op de knop Profiel delen zodat de persoon jou een wachtwoord kan sturen.';

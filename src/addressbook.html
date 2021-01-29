@@ -33,9 +33,9 @@
       </button>
       <button
         class="black full text-white"
-        onclick="javascript:window.location.href='keymanagement.html?t='+ (new Date().getTime());"
+        onclick="javascript:window.location.href='addressbookmanagement.html?t='+ (new Date().getTime());"
       >
-        Key management
+        Adresboek
       </button>
       <button
         class="black full text-white"
@@ -60,7 +60,9 @@
           Selecteer de contactpersoon waarnaar je een wachtwoord wilt sturen
 				</div>
 			</div>
-
+      <div class="item">
+        <input id="txtSearch" type="text" placeholder="Zoekterm">
+      </div>
       <div class="list">
         <div id="addressbookRow">
           <!-- ADDRESSES LOAD HERE -->
@@ -68,7 +70,7 @@
       </div>
 
       <div id="addressbookRowTemplate" style="display: none;">
-        <div class="item">
+        <div class="item addressbookItem">
           <h2 class="name"></h2>
           <p class="company text-grey-500"></p>
           <p class="emailAddress text-grey-500"></p>
@@ -90,8 +92,8 @@
     <!-- <script type="text/javascript" src="js/indexeddb.js"></script> -->
     <script src="js/library/jquery.qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
-    <script type="text/javascript" src="js/library/profile-lib.js"></script>
+    <script type="text/javascript" src="js/library/profile-lib.js?jsversion=4"></script>
 
-    <script type="text/javascript" src="js/addressbook.js?jsversion=24"></script>
+    <script type="text/javascript" src="js/addressbook.js?jsversion=30"></script>
   </body>
 </html>

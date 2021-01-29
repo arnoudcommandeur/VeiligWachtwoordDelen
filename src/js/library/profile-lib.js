@@ -4,7 +4,8 @@ function initStore() {
 }
 
 function initAddressbook() {
-    value = new idbKeyval.Store('VeiligWachtwoordSturenAddressbook', 'Addressbook');
+//    value = new idbKeyval.Store('VeiligWachtwoordSturenAddressbook', 'Addressbook');
+    value = new idbKeyval.Store('VeiligWachtwoordSturen', 'Profile');
     return value;
 }
 
@@ -67,8 +68,6 @@ async function addAddressbookItem(_addressbookStore, _index, _publicKey, _name, 
 };
 
 async function deleteAddressbookItem(_addressbookStore, _index) {
-
-    alert('De volgende index wordt verwijderd:' + _index);
 
     value = await idbKeyval.del(_index, _addressbookStore);
 

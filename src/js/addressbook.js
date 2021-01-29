@@ -23,7 +23,38 @@ App = {
       App.showAddressbook();
     }
 
+    // document.querySelector('#txtSearch').addEventListener("keypress", (event) => {
+
+    //   _key = event.key;
+    //   _searchText = document.getElementById('txtSearch').value + event.key;
+
+    //   App.searchAddressbook(_searchText);
+    // });
+
+    $('#txtSearch').on('input',function(e){
+        App.searchAddressbook($('#txtSearch').val())
+    });
+
     return true;
+  },
+
+  searchAddressbook: function(_searchText) {
+
+    console.log(_searchText);
+
+    $(".addressbookItem").each(function( index ) {
+      //console.log( index + ": " + $( this ).text() );
+      console.log(this.innerHTML.includes(_searchText))
+      console.log(index);
+      console.log(this.innerHTML);
+
+      if (!this.innerHTML.includes(_searchText)) { 
+        this.style.display = 'none'
+       } 
+      else 
+        this.style.display = ''
+    });
+
   },
 
   showAddressbook: async function() {
@@ -32,20 +63,24 @@ App = {
     await idbKeyval.keys(App.addressbookStore).then((keys) => addressbookKeys = keys);
 
     for (i=0; i<addressbookKeys.length; i++) {
-      var row = $('#addressbookRow');
-      var template = $('#addressbookRowTemplate');
 
-      val = await idbKeyval.get(addressbookKeys[i], App.addressbookStore).then((val) => { return val } )
+      if (addressbookKeys[i] != 0) {
+        var row = $('#addressbookRow');
+        var template = $('#addressbookRowTemplate');
 
-      template.find('.name').text(val.name);
-      template.find('.company').text(val.company);
-      template.find('.emailAddress').text(val.emailAddress);
-      template.find('.publicKey').text(val.publicKey);
-      template.find('.btn-send').attr('data-id', addressbookKeys[i]);
-      template.find('.btn-send').attr('data-emailaddress', val.emailAddress);
-      template.find('.btn-send').attr('data-publickey', val.publicKey);
+        val = await idbKeyval.get(addressbookKeys[i], App.addressbookStore).then((val) => { return val } )
 
-      row.append(template.html()+'<BR>');
+        template.find('.item').attr('data-id', val.name);
+        template.find('.name').text(val.name);
+        template.find('.company').text(val.company);
+        template.find('.emailAddress').text(val.emailAddress);
+        template.find('.publicKey').text(val.publicKey);
+        template.find('.btn-send').attr('data-id', addressbookKeys[i]);
+        template.find('.btn-send').attr('data-emailaddress', val.emailAddress);
+        template.find('.btn-send').attr('data-publickey', val.publicKey);
+
+        row.append(template.html()+'<BR>');
+      }
     }
 
     $(document).on('click', '.btn-send', App.handleSend);

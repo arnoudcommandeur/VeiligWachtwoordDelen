@@ -46,11 +46,12 @@ App = {
 
   handleDelete: async function(event) {
 
-    _id = document.getElementById("txtId").value;
-    deleteAddressbookItem(App.addressbookStore, _id);
+    if (confirm('Weet je zeker dat je dit contact wilt verwijderen?')) {
+      _id = document.getElementById("txtId").value;
+      deleteAddressbookItem(App.addressbookStore, _id);
 
-    location.reload();
-
+      location.reload();
+    }
   },
 
   showAddressbook: async function() {
@@ -59,23 +60,26 @@ App = {
     await idbKeyval.keys(App.addressbookStore).then((keys) => addressbookKeys = keys);
 
     for (i=0; i<addressbookKeys.length; i++) {
-      var row = $('#addressbookRow');
-      var template = $('#addressbookRowTemplate');
 
-      val = await idbKeyval.get(addressbookKeys[i], App.addressbookStore).then((val) => { return val } )
+      if (addressbookKeys[i] != 0) {
+        var row = $('#addressbookRow');
+        var template = $('#addressbookRowTemplate');
 
-      template.find('.name').text(val.name);
-      template.find('.emailAddress').text(val.emailAddress);
-      template.find('.company').text(val.company);
-      template.find('.publicKey').text(val.publicKey);
-      template.find('.btn-edit').attr('data-id', addressbookKeys[i]);
-      template.find('.btn-edit').attr('data-name', val.name);
-      template.find('.btn-edit').attr('data-emailaddress', val.emailAddress);
-      template.find('.btn-edit').attr('data-publickey', val.publicKey);
-      template.find('.btn-edit').attr('data-company', val.company);
-      template.find('.btn-edit').attr('data-publickey', val.publickey);
+        val = await idbKeyval.get(addressbookKeys[i], App.addressbookStore).then((val) => { return val } )
 
-      row.append(template.html()+'<BR>');
+        template.find('.name').text(val.name);
+        template.find('.emailAddress').text(val.emailAddress);
+        template.find('.company').text(val.company);
+        template.find('.publicKey').text(val.publicKey);
+        template.find('.btn-edit').attr('data-id', addressbookKeys[i]);
+        template.find('.btn-edit').attr('data-name', val.name);
+        template.find('.btn-edit').attr('data-emailaddress', val.emailAddress);
+        template.find('.btn-edit').attr('data-publickey', val.publicKey);
+        template.find('.btn-edit').attr('data-company', val.company);
+        template.find('.btn-edit').attr('data-publickey', val.publickey);
+
+        row.append(template.html()+'<BR>');
+      }
     }
 
     $(document).on('click', '.btn-edit', App.handleEdit);
