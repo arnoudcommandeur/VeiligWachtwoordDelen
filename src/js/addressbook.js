@@ -23,13 +23,6 @@ App = {
       App.showAddressbook();
     }
 
-    // document.querySelector('#txtSearch').addEventListener("keypress", (event) => {
-
-    //   _key = event.key;
-    //   _searchText = document.getElementById('txtSearch').value + event.key;
-
-    //   App.searchAddressbook(_searchText);
-    // });
 
     $('#txtSearch').on('input',function(e){
         App.searchAddressbook($('#txtSearch').val())
@@ -40,15 +33,16 @@ App = {
 
   searchAddressbook: function(_searchText) {
 
-    console.log(_searchText);
+    //console.log(_searchText);
 
     $(".addressbookItem").each(function( index ) {
       //console.log( index + ": " + $( this ).text() );
-      console.log(this.innerHTML.includes(_searchText))
-      console.log(index);
-      console.log(this.innerHTML);
+      // console.log(this.innerHTML.includes(_searchText))
+      // console.log(index);
+      //console.log($(this).attr('data-id'));
 
-      if (!this.innerHTML.includes(_searchText)) { 
+
+      if (!$(this).attr('data-id').toUpperCase().includes(_searchText.toUpperCase())) { 
         this.style.display = 'none'
        } 
       else 
@@ -70,7 +64,8 @@ App = {
 
         val = await idbKeyval.get(addressbookKeys[i], App.addressbookStore).then((val) => { return val } )
 
-        template.find('.item').attr('data-id', val.name);
+        //template.attr('data-allData', val.name);
+        template.find('.item').attr('data-id', val.name + val.company + val.emailAddress);
         template.find('.name').text(val.name);
         template.find('.company').text(val.company);
         template.find('.emailAddress').text(val.emailAddress);
