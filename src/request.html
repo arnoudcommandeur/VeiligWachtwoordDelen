@@ -57,7 +57,7 @@
 			<div style="padding: 20pt" >
         Voordat iemand aan jou een wachtwoord kan sturen heeft de ander eerst jouw public key nodig. 
         <br><br>
-        Klik op de knop hieronder om jouw public key te sturen.
+        Klik op de knop hieronder om jouw public key te delen.
 			</div>
       <div class="list">
         <!-- <div class="item"> -->
@@ -67,7 +67,7 @@
           <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
         <!-- </div> -->
         <div class="item">
-          <button id="btnCreateMessage" class="blue-900 radius full">Public Key sturen</button>
+          <button id="btnCreateMessage" class="blue-900 radius full" onclick="loadingElement('btnCreateMessage', 'Wachten...')">Public key sturen</button>
         </div>
       </div>
       <div id='link'></div>
@@ -89,6 +89,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js?jsversion=1"></script>
 
-    <script type="text/javascript" src="js/request.js?jsversion=16"></script>
+    <script type="text/javascript" src="js/request.js?jsversion=20"></script>
   </body>
 </html>

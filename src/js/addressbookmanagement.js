@@ -5,7 +5,6 @@ App = {
   addressbookStore: null,
 
   type: null, // 0 direct doorgaan naar encrypt.html
-// encrypt.html?name=Arnoud%20Commandeur&emailAddress=arnoudcommandeur%40hotmail.com&publicKeyReciever=7CpDmZ%2FXABBFYwTpu86Q%2Bftw6k%2F0gZ7tY%2F%2FBzktK02Y%3D
 
   init: async function() {
 
@@ -29,14 +28,12 @@ App = {
       await App.handleDelete();
     });
     if (App.type==0) {
-      // Toon de nieuwe gegevens
       App.handleShowNewItem();
       return true;
     }
 
     if ((await checkProfile(App.profileStore)) == false) {
       alert('Er is nog geen profiel aanwezig, maak deze eerst aan via het menu Profiel');
-      //document.getElementById("divPassword").style.display = '';
     } else {
       App.showAddressbook();
     }
@@ -139,7 +136,6 @@ App = {
 
   handleSave: async function() {
 
-    //_index = document.getElementById("txtId").value
     _publicKey = document.getElementById("txtPublicKey").value
     _name = document.getElementById("txtName").value
     _emailAddress = document.getElementById("txtEmailAddress").value
@@ -148,16 +144,7 @@ App = {
     await addAddressbookItem(App.addressbookStore, _publicKey, _publicKey, _name, _emailAddress, _company)
 
     window.location.href='index.html?t=' + (new Date().getTime());
-
-    // const divAddressbookList = document.querySelector('#divAddressbookList')
-    // const divAddressbookEdit = document.querySelector('#divAddressbookEdit')
-
-    // divAddressbookList.style.display = ''
-    // divAddressbookEdit.style.display = 'none';
   }
-
-
-
 };
 
 $(function() {

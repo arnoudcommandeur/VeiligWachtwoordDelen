@@ -4,7 +4,6 @@ App = {
   myKey: null,
 
   init: async function() {
-    //alert('App.init');
 
     App.profileStore = initStore();
     const btnDecrypt = document.querySelector('#btnDecrypt');

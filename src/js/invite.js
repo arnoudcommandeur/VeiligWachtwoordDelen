@@ -49,28 +49,29 @@ App = {
 
     try {
       await navigator.share(shareData)
-      console.log('Link shared successfully')
+      location.href = 'index.html?t='+ (new Date().getTime());
     } catch(err) {
-      console.log(err);
 
-      var mail = "mailto:"
-      mail += "?subject=Aanvraag om public key te delen"
+      if (err.message == 'navigator.share is not a function') {
+        var mail = "mailto:"
+        mail += "?subject=Aanvraag om public key te delen"
 
-      body = "U ontvangt deze email van " + name + " omdat hij u een wachtwoord wilt sturen. \n\n"
-      body += "Voordat hij het wachtwoord kan sturen, moet hij eerst de Public Key van u ontvangen. Klik op link om een profiel aan te maken en de Public Key terug te sturen: "
-      body += url
-      body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
-      body += "\n\nMet een vriendelijke groet,";
-      body += "\n" + name;
+        body = "U ontvangt deze email van " + name + " omdat hij u een wachtwoord wilt sturen. \n\n"
+        body += "Voordat hij het wachtwoord kan sturen, moet hij eerst de Public Key van u ontvangen. Klik op link om een profiel aan te maken en de Public Key terug te sturen: "
+        body += url
+        body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
+        body += "\n\nMet een vriendelijke groet,";
+        body += "\n" + name;
 
-      mail += "&body=" + encodeURIComponent(body); 
+        mail += "&body=" + encodeURIComponent(body); 
 
-      var mlink = document.createElement('a');
-      mlink.setAttribute('href', mail);
-      mlink.click();
-
+        var mlink = document.createElement('a');
+        mlink.setAttribute('href', mail);
+        mlink.click();
+        location.href = 'index.html?t='+ (new Date().getTime());
+      }
     }
-    location.href = 'index.html?t='+ (new Date().getTime());
+    closeLoading('btnCreateMessage');
   },
 };
 

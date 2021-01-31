@@ -56,7 +56,7 @@
 		<div class="content has-header" style="font-size: 14pt;" align="center">
       <br>
 			<div style="padding: 20pt">
-        Selecteer een contact uit je adresboek, of vraag eerst de public key op indien je deze nog niet bezit. 
+        Selecteer een contact uit je adresboek, of vraag de public key op indien je de key nog niet bezit. 
 			</div>
       <div class="list">
         <!-- <div class="item"> -->
@@ -66,10 +66,10 @@
           <input id="txtEmailAddress" type="hidden" placeholder="Je email adres">
         <!-- </div> -->
         <div class="item">
-          <button id="btnCreateMessage" class="blue-900 radius full">Public key opvragen</button>
+          <button id="btnAddressbook" class="blue-900 radius full" onclick="loadingElement('btnAddressbook', 'Wachten...')">Toon adresboek</button>
         </div>
         <div class="item">
-          <button id="btnAddressbook" class="blue-900 radius full">Toon adresboek</button>
+          <button id="btnCreateMessage" class="blue-900 radius full" onclick="loadingElement('btnCreateMessage', 'Wachten...')">Public key opvragen</button>
         </div>
       </div>
       <div id='link'></div>
@@ -87,6 +87,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js?jsversion=1"></script>
 
-    <script type="text/javascript" src="js/invite.js?jsversion=14"></script>
+    <script type="text/javascript" src="js/invite.js?jsversion=17"></script>
   </body>
 </html>

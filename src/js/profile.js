@@ -112,28 +112,30 @@ App = {
 
     try {
       await navigator.share(shareData)
-      console.log('Link shared successfully')
+      location.href = 'index.html?t='+ (new Date().getTime());
     } catch(err) {
-      console.log(err);
 
-      var mail = "mailto:"
-      mail += "?subject=Aanvraag om publieke profiel te delen"
+      if (err.message == 'navigator.share is not a function') {
+        var mail = "mailto:"
+        mail += "?subject=Aanvraag om publieke profiel te delen"
 
-      body = "Hallo, je ontvangt deze email omdat iemand met jou een wachtwoord wilt uitwisselen. Hiervoor . \n\n"
-      body += "Klik op de link om op een veilige manier het wachtwoord terugsturen: "
-      body += App.url
-      body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
-      body += "\n\nMet een vriendelijke groet,";
-      body += "\n" + name;
+        body = "Hallo, je ontvangt deze email omdat iemand met jou een wachtwoord wilt uitwisselen. Hiervoor . \n\n"
+        body += "Klik op de link om op een veilige manier het wachtwoord terugsturen: "
+        body += App.url
+        body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
+        body += "\n\nMet een vriendelijke groet,";
+        body += "\n" + name;
 
-      mail += "&body=" + encodeURIComponent(body); 
+        mail += "&body=" + encodeURIComponent(body); 
 
-      var mlink = document.createElement('a');
-      mlink.setAttribute('href', mail);
-      mlink.click();
+        var mlink = document.createElement('a');
+        mlink.setAttribute('href', mail);
+        mlink.click();
 
+        location.href = 'index.html?t='+ (new Date().getTime());
+      }
     }
-    location.href = 'index.html?t='+ (new Date().getTime());
+    closeLoading('btnShareProfile');
   },
 
   showProfile: async function() {

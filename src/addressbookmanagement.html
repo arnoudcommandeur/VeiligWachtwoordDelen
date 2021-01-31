@@ -97,13 +97,13 @@
             <input id="txtPublicKey" type="text" placeholder="Public Key" maxlength="100">
           </div> 
           <div class="item">
-            <button id="btnSave" class="blue-900 radius full">Opslaan</button>
+            <button id="btnSave" class="blue-900 radius full" onclick="loadingElement('btnSave', 'Wachten...')">Opslaan</button>
           </div>
           <div class="item" id="divDeleteButton" style="display: none">
-            <button id="btnDelete" class="blue-900 radius full">Verwijderen</button>
+            <button id="btnDelete" class="blue-900 radius full" onclick="loadingElement('btnDelete', 'Wachten...')">Verwijderen</button>
           </div>
           <div class="item">
-            <button id="btnBack" class="blue-900 radius full">Annuleren</button>
+            <button id="btnBack" class="blue-900 radius full" onclick="loadingElement('btnBack', 'Wachten...')">Annuleren</button>
           </div>
         </div>
       </div>

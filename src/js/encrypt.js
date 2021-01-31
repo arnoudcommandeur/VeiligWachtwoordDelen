@@ -3,10 +3,8 @@ App = {
   keySender: null,
 
   init: async function() {
-    //alert('App.init');
-    App.keySender = nacl.box.keyPair();
 
-    //console.log(App.keySender.publicKey);
+    App.keySender = nacl.box.keyPair();
     const btnSendMessage = document.querySelector('#btnSendMessage');
 
     btnSendMessage.addEventListener('click', async function(event){
@@ -27,7 +25,7 @@ App = {
     emailAddress = urlParams.get('emailAddress');  
     publicKeyReciever = urlParams.get('publicKeyReciever');
     publicKeySender = App.keySender.publicKey;
-    //console.log(publicKeySender);
+
     description = document.getElementById("txtDescription").value
     secret = document.getElementById("txtSecret").value
 
@@ -45,14 +43,12 @@ App = {
     body = "Hallo " + name + ", \n\n"
     body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
     body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
-    //body += "http://veiligwachtwoordsturen.web.app/decrypt.html?nonce=" + encodeURIComponent(nacl.util.encodeBase64(nonce)) + "&description=" + encodeURIComponent(description) + "&cipher=" + encodeURIComponent(nacl.util.encodeBase64(cipher)) + "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender));
     body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 
     body += "/decrypt.html?nonceD=" + encodeURIComponent(nacl.util.encodeBase64(nonceD)) 
     body += "&nonceP=" +  encodeURIComponent(nacl.util.encodeBase64(nonceP)) 
     body += "&cipherD=" + encodeURIComponent(nacl.util.encodeBase64(cipherD)) 
     body += "&cipherP=" + encodeURIComponent(nacl.util.encodeBase64(cipherP)) 
     body += "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) 
-    //Body += "&t="+ (new Date().getTime());
     body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
