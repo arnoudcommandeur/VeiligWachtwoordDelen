@@ -40,16 +40,15 @@ App = {
     var mail = "mailto:" + emailAddress
     mail += "?subject=Versleuteld bericht"
 
-    body = "Hallo " + name + ", \n\n"
-    body += "U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
-    body += "Klik op de link op een computer met de juiste sleutel om het wachtwoord te ontcijferen: "
+    body = "Deze email bevat een versleuteld wachtwoord. \n\n"
+    body += "Klik op de link op de computer met de juiste key om het wachtwoord te bekijken: "
     body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 
     body += "/decrypt.html?nonceD=" + encodeURIComponent(nacl.util.encodeBase64(nonceD)) 
     body += "&nonceP=" +  encodeURIComponent(nacl.util.encodeBase64(nonceP)) 
     body += "&cipherD=" + encodeURIComponent(nacl.util.encodeBase64(cipherD)) 
     body += "&cipherP=" + encodeURIComponent(nacl.util.encodeBase64(cipherP)) 
     body += "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) 
-    body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
+    body += "\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
 

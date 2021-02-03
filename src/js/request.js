@@ -38,7 +38,7 @@ App = {
 
     const shareData = {
       title: 'Aanvraag om wachtwoord te delen',
-      text: 'Klik op de link om veilig een wachtwoord te sturen',
+      text: 'Stuur mij via deze link veilig een wachtwoord',
       url: url,
     }
 
@@ -51,14 +51,12 @@ App = {
       if (err.message == 'navigator.share is not a function') {
 
         var mail = "mailto:"
-        mail += "?subject=Aanvraag om wachtwoord te delen"
+        mail += "?subject=Veilig wachtwoord uitwisselen"
 
-        body = "<html>U ontvangt deze email voor het veilig uitwisselen van een wachtwoord. \n\n"
-        body += "Klik op de link om op een veilige manier het wachtwoord terugsturen: "
+        body = "Je ontvangt deze email voor het veilig delen van een wachtwoord. \n\n"
+        body += "Klik op de link hieronder om op een veilige manier het wachtwoord te sturen: "
         body += url
-        body += "\n\nU wordt aangeraden dit bericht na gebruik direct <b>permanent</b> te verwijderen uit uw mailbox.";
-        body += "\n\nMet een vriendelijke groet,";
-        body += "\n" + name + "</html>";
+        body += "\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
 
         mail += "&body=" + encodeURIComponent(body); 
 

@@ -41,7 +41,7 @@ App = {
 
     const shareData = {
       title: 'Veilig Wachtwoord Sturen',
-      text: 'Klik op de link om veilig een wachtwoord op te vragen bij ' + name,
+      text: 'Ik wil jou op een veilige manier een wachtwoord sturen. Hiervoor heb ik jouw public key nodig. Klik op onderstaande link om deze terug te sturen: ',
       url: url,
     }
 
@@ -54,14 +54,12 @@ App = {
 
       if (err.message == 'navigator.share is not a function') {
         var mail = "mailto:"
-        mail += "?subject=Aanvraag om public key te delen"
+        mail += "?subject=Veilig wachtwoord uitwisselen"
 
-        body = "U ontvangt deze email van " + name + " omdat hij u een wachtwoord wilt sturen. \n\n"
-        body += "Voordat hij het wachtwoord kan sturen, moet hij eerst de Public Key van u ontvangen. Klik op link om een profiel aan te maken en de Public Key terug te sturen: "
+        body = "Ik wil jou op een veilige manier een wachtwoord sturen. \n\n"
+        body += "Hiervoor heb ik jouw Public key nodig. Klik op link om eerst een Public key aan te maken en mij daarna de Public key terug te sturen: "
         body += url
-        body += "\n\nU wordt aangeraden dit bericht na gebruik direct permanent te verwijderen uit uw mailbox.";
-        body += "\n\nMet een vriendelijke groet,";
-        body += "\n" + name;
+        body += "\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
 
         mail += "&body=" + encodeURIComponent(body); 
 
