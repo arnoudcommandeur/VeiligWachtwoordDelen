@@ -6,7 +6,15 @@ App = {
   init: async function() {
 
     App.profileStore = initStore();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
     const btnDecrypt = document.querySelector('#btnDecrypt');
+
+    if (decodeURIComponent(urlParams.get('type')) == 0) {
+      const divCipher = document.querySelector('#divCipher');
+      divCipher.style.display = '';
+    }
 
     btnDecrypt.addEventListener('click', async function(event){
       if (await checkProfile(App.profileStore)) {
@@ -28,8 +36,8 @@ App = {
 
   decrypt: async function() {
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
 
     profile = await getProfile(App.profileStore);
     secretKeyCipher = profile.secretKey;
@@ -42,8 +50,19 @@ App = {
       App.myKey = nacl.box.keyPair.fromSecretKey(nacl.util.decodeBase64(secretKey))
     } catch (error) {
       alert('Onjuist wachtwoord. Probeer opnieuw.');
+      closeLoading('btnDecrypt');  
       return false;
     }
+
+    if (decodeURIComponent(urlParams.get('type')) == 0) {
+      App.insertUrlParam(document.getElementById('txtCipher').value)
+    }
+
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+
+    console.log(urlParams.get('publicKeySender'));
+
     publicKeySender = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('publicKeySender')));  
 
     nonceD = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('nonceD')));  
@@ -51,8 +70,14 @@ App = {
     cipherD = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('cipherD')));
     cipherP = nacl.util.decodeBase64(decodeURIComponent(urlParams.get('cipherP')));
 
-    description = nacl.box.open(cipherD, nonceD, publicKeySender, App.myKey.secretKey);
-    secret = nacl.box.open(cipherP, nonceP, publicKeySender, App.myKey.secretKey);
+    try {
+      description = nacl.box.open(cipherD, nonceD, publicKeySender, App.myKey.secretKey);
+      secret = nacl.box.open(cipherP, nonceP, publicKeySender, App.myKey.secretKey);
+    } catch(err) {
+      alert('Er is een fout opgetreden tijdens het ontcijferen van het bericht. Probeer opnieuw.');
+      closeLoading('btnDecrypt');  
+      return false;
+    }
 
     document.getElementById("divDescription").innerHTML = nacl.util.encodeUTF8(description);
     document.getElementById("divSecret").innerHTML = nacl.util.encodeUTF8(secret);
@@ -79,7 +104,17 @@ App = {
     $temp.val($(element).text()).select();
     document.execCommand("copy");
     $temp.remove();
-  }
+  },
+
+  insertUrlParam: function(queryString) {
+    if (history.pushState) {
+
+        // let searchParams = new URLSearchParams(window.location.search);
+        // searchParams.set(key, value);
+        let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryString //searchParams.toString();
+        window.history.pushState({path: newurl}, '', newurl);
+    }
+}
 
   // end App
 };

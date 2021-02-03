@@ -18,7 +18,6 @@ App = {
 
     if ((await checkProfile(App.profileStore)) == false) {
       alert('Er is nog geen profiel aanwezig, maak deze eerst aan via het menu Profiel');
-      //document.getElementById("divPassword").style.display = '';
     } else {
       App.showAddressbook();
     }

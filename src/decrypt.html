@@ -59,6 +59,10 @@
 			<div id="divStep1" style="padding: 20pt" >
           Je hebt een beveiligd wachtwoord ontvangen. Klik op de knop hieronder en vul je wachtwoord in om het bericht te lezen. Let op: laat niemand meekijken!
           <br><br>
+          <div id="divCipher" class="item" style="display: none">
+            <input id="txtCipher" type="text" placeholder="Bericht (uit email)">
+            <br><br>
+          </div>
           <div class="item">
             <button id="btnDecrypt" class="blue-900 radius full" onclick="loadingElement('btnDecrypt', 'Wachten...')">Bericht ontcijferen</button>
           </div>
@@ -91,6 +95,6 @@
     <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
     <script type="text/javascript" src="js/library/profile-lib.js"></script>
 
-    <script type="text/javascript" src="js/decrypt.js?jsversion=12"></script>
+    <script type="text/javascript" src="js/decrypt.js?jsversion=15"></script>
   </body>
 </html>

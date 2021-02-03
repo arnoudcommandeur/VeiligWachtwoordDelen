@@ -37,18 +37,26 @@ App = {
     cipherD = nacl.box(nacl.util.decodeUTF8(description), nonceD, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
     cipherP = nacl.box(nacl.util.decodeUTF8(secret), nonceP, nacl.util.decodeBase64(decodeURIComponent(publicKeyReciever)), App.keySender.secretKey);
 
+    var server = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 
+    var page = "/decrypt.html?"
+    var message = "nonceD=" + encodeURIComponent(nacl.util.encodeBase64(nonceD)) 
+    message += "&nonceP=" +  encodeURIComponent(nacl.util.encodeBase64(nonceP)) 
+    message += "&cipherD=" + encodeURIComponent(nacl.util.encodeBase64(cipherD)) 
+    message += "&cipherP=" + encodeURIComponent(nacl.util.encodeBase64(cipherP)) 
+    message += "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) 
+
+    url = server + page + message
+
     var mail = "mailto:" + emailAddress
     mail += "?subject=Versleuteld bericht"
 
-    body = "Deze email bevat een versleuteld wachtwoord. \n\n"
+    body = "Deze email bevat een versleuteld wachtwoord.\n\n"
     body += "Klik op de link op de computer met de juiste key om het wachtwoord te bekijken: "
-    body += window.location.protocol + '//' + window.location.hostname + ':' + window.location.port 
-    body += "/decrypt.html?nonceD=" + encodeURIComponent(nacl.util.encodeBase64(nonceD)) 
-    body += "&nonceP=" +  encodeURIComponent(nacl.util.encodeBase64(nonceP)) 
-    body += "&cipherD=" + encodeURIComponent(nacl.util.encodeBase64(cipherD)) 
-    body += "&cipherP=" + encodeURIComponent(nacl.util.encodeBase64(cipherP)) 
-    body += "&publicKeySender=" + encodeURIComponent(nacl.util.encodeBase64(publicKeySender)) 
-    body += "\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
+    body += url + "\n\n"
+    body += "Wil je nog meer zekerheid door de gegevens niet naar een centrale server te sturen? Klik dan op onderstaande link en vul het bericht handmatig in en klik op de knopBericht ontcijferen\n"
+    body += server + page + "type=0\n\n"
+    body += "Vul het volgende bericht in: \n\n" + message
+    body += "\n\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
 
     mail += "&body=" + encodeURIComponent(body); 
 
