@@ -31,6 +31,18 @@ App = {
 
     if (publicKeyReciever == null) {
         alert('Er is een fout opgetreden. Public key van de ontvanger is onbekend. Scan QR code van de ontvanger of gebruik een link van de geadresseerde en probeer opnieuw.');
+        closeLoading('btnSendMessage');
+        return;
+    }
+
+    if (description == '') {
+        alert('Er is een fout opgetreden. Vul de Korte omschrijving in en probeer opnieuw.');
+        closeLoading('btnSendMessage');
+        return;
+    }
+    if (secret == '') {
+        alert('Er is een fout opgetreden. Vul de Gebruikersnaam / wachtwoord / server in en probeer opnieuw.');
+        closeLoading('btnSendMessage');
         return;
     }
 
@@ -53,7 +65,7 @@ App = {
     body = "Deze email bevat een versleuteld wachtwoord.\n\n"
     body += "Klik op de link op de computer met de juiste key om het wachtwoord te bekijken: "
     body += url + "\n\n"
-    body += "Wil je nog meer zekerheid door de gegevens niet naar een centrale server te sturen? Klik dan op onderstaande link en vul het bericht handmatig in en klik op de knopBericht ontcijferen\n"
+    body += "Wil je nog meer zekerheid door de gegevens niet naar een centrale server te sturen? Klik dan op onderstaande link en vul het bericht handmatig in en klik op de knop Bericht ontcijferen\n"
     body += server + page + "type=0\n\n"
     body += "Vul het volgende bericht in: \n\n" + message
     body += "\n\n\nJe wordt aangeraden deze email na gebruik te verwijderen uit je mailbox.";
